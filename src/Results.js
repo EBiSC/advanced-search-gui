@@ -89,21 +89,21 @@ class Results extends Component {
                   disabled={true}
                   primaryText="Cambridge BioResource"
                   secondaryText="Tissue provider"
-                />{" "}
+                />
                 <ListItem
                   disabled={true}
                   primaryText="2014-04-17"
                   secondaryText="Date of derivation"
-                />{" "}
+                />
               </List>
-            </Col>{" "}
+            </Col>
             <Col>
               <List>
                 <ListItem
                   primaryText="Male"
                   disabled={true}
                   secondaryText="Donor sex"
-                />{" "}
+                />
                 <ListItem
                   disabled={true}
                   primaryText="White - White British"

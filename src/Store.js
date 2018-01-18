@@ -80,7 +80,6 @@ class Store {
 
   @action
   fetchStuff(url) {
-    //console.log("FETCHING: ", url);
     return fetch(url).then(x => x.json());
   }
 

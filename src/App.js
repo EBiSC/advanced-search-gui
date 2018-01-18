@@ -18,22 +18,6 @@ const muiTheme = getMuiTheme({
 
 @observer
 class App extends Component {
-  componentDidMount() {
-    //EGA AUTHeNTICATION
-    /*
-    var proxyUrl = "https://cors-anywhere.herokuapp.com/";
-    fetch(
-      proxyUrl +
-        "https://ega.ebi.ac.uk/ega/rest/access/v2/users/testuser%40ebi.ac.uk?pass=testpassword"
-    )
-      .then(blob => blob.json())
-      .then(function(data) {
-        console.log(data);
-      });
-
-      */
-  }
-
   handleLogin = () => {
     if (Store.username === "" && Store.password === "") {
       alert("Please enter your login credentials");
@@ -85,54 +69,6 @@ class App extends Component {
                 Allelic Query Service <span style={Styles.subHeading}>UI</span>
               </h1>
             </header>
-
-            {/*
-
-            <div id="login">
-              <div>
-                <TextField
-                  underlineStyle={{ display: "none" }}
-                  onChange={(e, value) => (Store.username = value)}
-                  style={{
-                    background: "white",
-                    borderRadius: "5px",
-                    padding: "0 16px",
-                    boxSizing: "border-box",
-                    marginBottom: "16px"
-                  }}
-                  type="email"
-                  hintText="Email."
-                  fullWidth
-                />
-                <br />
-
-                <TextField
-                  underlineStyle={{ display: "none" }}
-                  onChange={(e, value) => (Store.password = value)}
-                  style={{
-                    background: "white",
-                    borderRadius: "5px",
-                    padding: "0 16px",
-                    boxSizing: "border-box"
-                  }}
-                  type="password"
-                  hintText="Password."
-                  fullWidth
-                />
-                <br />
-              </div>
-              <div id="loginFooter">
-                <Row>
-                  <Col sm={9}>Forgot password?</Col>
-                  <Col onClick={this.handleLogin} sm={3}>
-                    LOG IN
-                  </Col>
-                </Row>
-              </div>
-            </div>
-
-
-            */}
 
             <div style={Styles.App} className="App">
               <EBISC />

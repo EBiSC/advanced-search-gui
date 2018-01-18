@@ -9,15 +9,10 @@ import SendQuery from "./SendQuery";
 import CellLineForm from "./CellLineForm";
 import AutoComplete from "material-ui/AutoComplete";
 import ContentDelete from "material-ui/svg-icons/navigation/close";
-
 import MenuItem from "material-ui/MenuItem";
 import CircularProgress from "material-ui/CircularProgress";
 import Transition from "react-transition-group/Transition";
-
 const duration = 200;
-//Store.appearTransform;
-//const appearTransform = "translateY(120px)";
-//const appearTransformDefault = "translateY(0)";
 
 const defaultStyle = {
   transition: `opacity ${duration}ms ease-in-out, transform ${duration}ms ease-in-out`,
@@ -49,6 +44,7 @@ const regexes = [
 @observer
 class EBISC extends Component {
   componentDidMount() {
+    //Load Variant Consequences
     fetch(
       "https://rest.ensembl.org/info/variation/consequence_types?content-type=application/json"
     )
@@ -70,14 +66,13 @@ class EBISC extends Component {
     if (value.toUpperCase().indexOf("GO:") === 0) {
       console.log("pull go");
       Store.inputType = "GO";
-      fetch("https://www.ebi.ac.uk/ols/api/select?ontology=go&q=" + value)
-        .then(x => x.json())
-        .then(x => {
-          Store.autocompleteArray = x.response.docs.map(
-            x => x.obo_id + " " + x.label
-          );
-          //  console.log(x);
-        });
+      Store.fetchStuff(
+        "https://www.ebi.ac.uk/ols/api/select?ontology=go&q=" + value
+      ).then(x => {
+        Store.autocompleteArray = x.response.docs.map(
+          x => x.obo_id + " " + x.label
+        );
+      });
       return;
     }
 
@@ -90,7 +85,6 @@ class EBISC extends Component {
       fetch("https://www.ebi.ac.uk/ols/api/select?ontology=ogg&q=" + value)
         .then(x => x.json())
         .then(x => {
-          console.log(x);
           if (x.response.numFound !== 0) {
             Store.autocompleteArray = x.response.docs.map(x => x.label);
             Store.inputType = "Gene Symbol";
@@ -243,40 +237,6 @@ class EBISC extends Component {
             )}
           </Transition>
         </div>
-
-        {/*
-        {Store.inputType === "" && (
-          <div className="tutorial">
-            <Row style={{ display: "none", padding: "16px" }}>
-              <Col sm={6}>
-                <h2>Search Cell Lines by:</h2>
-                <ul>
-                  <li>
-                    VARIANTS
-                    <small>RsIDs - rs12344</small>
-                    <small>HGVS - ENST00000003084:c.1431_1433delTTC</small>
-                  </li>
-                  <li>
-                    GENES
-                    <small>Symbols - BRCA2</small>
-                    <small>GO IDs - GO:1234444</small>
-                    <small>RefSeq -NG_007400.1:g.8638G>T</small>
-                  </li>
-                </ul>
-              </Col>
-              <Col sm={6}>
-                <h2>Search Genes by:</h2>
-                <ul>
-                  <li>
-                    CELL LINES
-                    <small>HIPSCI CELL LINE - HPSI0114i-eipl_1</small>
-                  </li>
-                </ul>
-              </Col>
-            </Row>
-          </div>
-        )}
-      */}
       </div>
     );
   }
