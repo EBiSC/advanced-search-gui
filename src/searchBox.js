@@ -69,14 +69,13 @@ class searchBox extends Component {
   render() {
     return (
       <div>
-        <div style={{ width: "100%", position: "relative" }}>
+        <div style={Styles.SearchBox}>
           <AutoComplete
             onNewRequest={this.proceed}
             filter={AutoComplete.caseInsensitiveFilter}
             dataSource={Store.autocompleteArray.slice()}
             autoFocus
             fullWidth
-            hintStyle={{ color: "red" }}
             name="userInput"
             ref="userInput"
             placeholder={Store.placeholder}
@@ -86,47 +85,20 @@ class searchBox extends Component {
           />
 
           {Store.loading && (
-            <div
-              style={{
-                top: "14px",
-                right: "-60px",
-                position: "absolute"
-              }}>
-              <CircularProgress color="#718B98" />
+            <div style={Styles.Loading}>
+              <CircularProgress color={Styles.LoadingColor} />
             </div>
           )}
-          <div
-            style={{
-              top: "0px",
-              bottom: "0",
-              left: "0",
-              borderTopLeftRadius: "8px",
-              border: "2px solid #546E7A",
-              borderBottomLeftRadius: "8px",
-              position: "absolute",
-              background: "#C4CFD4",
-              color: "white"
-            }}>
-            <div>
-              <MenuItem
-                style={{
-                  cursor: "default",
-                  lineHeight: "61px",
-                  color: "#111518"
-                }}
-                disabled={true}
-                primaryText="Search for Cell Lines"
-              />
-            </div>
+          <div style={Styles.AutoComplete}>
+            <MenuItem
+              style={Styles.AutoCompleteLabel}
+              disabled={true}
+              primaryText="Search for Cell Lines"
+            />
           </div>
           {Store.inputType !== "" &&
             !Store.loading && (
-              <div
-                style={{
-                  top: "6px",
-                  right: "-70px",
-                  position: "absolute"
-                }}>
+              <div style={Styles.SendButton}>
                 <SendQuery />
               </div>
             )}

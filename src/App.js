@@ -6,9 +6,15 @@ import { muiTheme } from "./uiTheme";
 import AppBar from "./AppBar";
 import Title from "./Title";
 import Form from "./EBISC";
+import Store from "./Store";
+import sampleData from "./sample.json";
 
 @observer
 class App extends Component {
+  componentDidMount() {
+    console.log("Sample HIPSCI Data", sampleData);
+  }
+
   render() {
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
@@ -16,7 +22,7 @@ class App extends Component {
           <AppBar />
           <div style={Styles.container}>
             <Title />
-            <div style={Styles.App} className="App">
+            <div style={Styles.App} >
               <Form />
             </div>
           </div>

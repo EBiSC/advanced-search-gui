@@ -9,7 +9,7 @@ import Results from "./Results";
 import GeneForm from "./GeneForm";
 import Snackbar from "./SnackBar";
 import Chip from "./Chip";
-import { duration, defaultStyle, transitionStyles } from "./uiAnimations";
+import { duration, defaultStyle, transitionStyles } from "./ui/uiAnimations";
 
 @observer
 class EBISC extends Component {

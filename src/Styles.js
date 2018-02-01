@@ -13,6 +13,34 @@ const styles = {
   AlignRight: {
     textAlign: "right"
   },
+  AutoCompleteLabel: {
+    cursor: "default",
+    lineHeight: "61px",
+    color: "#111518"
+  },
+  AutoComplete: {
+    top: "0px",
+    bottom: "0",
+    left: "0",
+    borderTopLeftRadius: "8px",
+    border: "2px solid #546E7A",
+    borderBottomLeftRadius: "8px",
+    position: "absolute",
+    background: "#C4CFD4",
+    color: "white"
+  },
+  SendButton: {
+    top: "6px",
+    right: "-70px",
+    position: "absolute"
+  },
+  SearchBox: { width: "100%", position: "relative" },
+  Loading: {
+    top: "14px",
+    right: "-60px",
+    position: "absolute"
+  },
+  LoadingColor: "#718B98",
   AppBar: {
     padding: "16px 16px",
     borderBottom: "1px solid rgba(84,110,122,0.25)",
