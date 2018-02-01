@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Styles from "./Styles";
-import EBISCLogo from "./ebisc.png";
-import HIPSCILogo from "./hipsci.png";
+import EBISCLogo from "./img/ebisc.png";
+import HIPSCILogo from "./img/hipsci.png";
 import { Row, Col } from "react-grid-system";
 
 class AppBar extends Component {

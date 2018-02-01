@@ -6,7 +6,6 @@ import { muiTheme } from "./uiTheme";
 import AppBar from "./AppBar";
 import Title from "./Title";
 import Form from "./EBISC";
-import Store from "./Store";
 
 @observer
 class App extends Component {
