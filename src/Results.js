@@ -2,27 +2,16 @@ import React, { Component } from "react";
 import { observer } from "mobx-react";
 import Store from "./Store";
 import Styles from "./Styles";
+import ResultBlock from "./ResultBlock";
+import NoResults from "./NoResults";
 import { List, ListItem } from "material-ui/List";
 import { Row, Col } from "react-grid-system";
 import RaisedButton from "material-ui/RaisedButton";
-import Snackbar from "material-ui/Snackbar";
+
 @observer
 class Results extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      open: false
-    };
-  }
-  handleRequestClose = () => {
-    this.setState({
-      open: false
-    });
-  };
   handleClick = () => {
-    this.setState({
-      open: true
-    });
+    Store.snackbar = true;
   };
 
   render() {
@@ -46,85 +35,56 @@ class Results extends Component {
               color: "#4D616A"
             }}>
             <i>
-              Homo Sapiens
+              <small>Filters applied: </small> <br />
+              Species: Homo_sapiens
               {Store.alleleToggle
                 ? " - Allele frequency " + Store.allelefreq + "%"
                 : ""}
-              {Store.zygosity !== "" ? " - " + Store.zygosity : ""}
+              {Store.zygosity !== "" ? " - " + Store.zygosity : ""}{" "}
+              {Store.selectedConsequence !== ""
+                ? " - " + Store.selectedConsequence
+                : ""}
             </i>
           </p>
         </header>
 
-        <div
-          style={{
-            padding: "16px 32px 40px",
-            fontSize: "18px",
-            fontWeight: "300",
-            position: "relative"
-          }}>
-          <h2
-            style={{
-              margin: "16px",
-              display: "inline-block"
-            }}>
-            <small>CELL LINE</small> <br />
-            HPSI1013i-yemz_3{" "}
-          </h2>
-          <RaisedButton
-            onClick={this.handleClick}
-            style={{ position: "absolute", right: "32px", top: "40px" }}
-            secondary={true}
-            label="View"
-          />
+        {Store.inputCategory === "Genes" ? (
+          Store.inputType === "Gene Symbol" ? (
+            Store.allelefreq > 5 ? (
+              <ResultBlock />
+            ) : (
+              <NoResults />
+            )
+          ) : Store.inputType === "GO" ? (
+            Store.selectedConsequence === "loss of function" ? (
+              <ResultBlock />
+            ) : (
+              <NoResults />
+            )
+          ) : (
+            <ResultBlock />
+          )
+        ) : (
+          <ResultBlock />
+        )}
 
-          <Row>
-            <Col>
-              <List>
-                <ListItem
-                  disabled={true}
-                  primaryText="Banked at EBiSC as WTSIi022-B "
-                  secondaryText="Banking Status"
-                />
-                <ListItem
-                  disabled={true}
-                  primaryText="Cambridge BioResource"
-                  secondaryText="Tissue provider"
-                />
-                <ListItem
-                  disabled={true}
-                  primaryText="2014-04-17"
-                  secondaryText="Date of derivation"
-                />
-              </List>
-            </Col>
-            <Col>
-              <List>
-                <ListItem
-                  primaryText="Male"
-                  disabled={true}
-                  secondaryText="Donor sex"
-                />
-                <ListItem
-                  disabled={true}
-                  primaryText="White - White British"
-                  secondaryText="Donor ethnicity"
-                />
-                <ListItem
-                  disabled={true}
-                  primaryText="Skin Tissue"
-                  secondaryText="Source material"
-                />
-              </List>
-            </Col>
-          </Row>
+        {/*
+        {Store.inputCategory === "Genes" ? (
+          Store.selectedConsequence === "loss of function" ? (
+            Store.allelefreq === 10 ? (
+              <ResultBlock />
+            ) : (
+              <NoResults />
+            )
+          ) : (
+            <NoResults />
+          )
+        ) : (
+          <ResultBlock />
+        )}
 
-          <Snackbar
-            open={this.state.open}
-            message="This will take you to the HIPSCI website in the final product."
-            autoHideDuration={3000}
-            onRequestClose={this.handleRequestClose}
-          />
-        </div>
+
+        */}
       </div>
     );
   }

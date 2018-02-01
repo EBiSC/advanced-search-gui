@@ -3,9 +3,16 @@ class Store {
   @observable searchText = "";
   @observable loading = false;
   @observable results = false;
+  @observable GeneView = false;
+  @observable selectedConsequence = "";
   @observable selectedSpecies = {};
   @observable autocompleteArray = [];
   @observable consequenceAutocompleteArray = [];
+  @observable userSelection = "VARIANT";
+  @observable zygosity = "";
+  @observable alleleToggle = true;
+  @observable allelefreq = 5;
+  @observable inputType = "";
   //AUTHENTICATION
   @observable username = "";
   @observable password = "";
@@ -17,16 +24,13 @@ class Store {
   ];
   //DROPDOWN
   @observable dropdown = 1;
+  //snackbar
+  @observable snackbar = false;
   //Animation
   @observable slideIndex = 0;
   @observable transforms = ["translateY(120px)", "translateX(1400px)"];
   @observable transformDefaults = ["translateY(0)", "translateX(0)"];
   //Animation Ends
-  @observable userSelection = "VARIANT";
-  @observable zygosity = "";
-  @observable alleleToggle = true;
-  @observable allelefreq = 5;
-  @observable inputType = "";
 
   @computed
   get appearTransform() {
@@ -43,6 +47,7 @@ class Store {
   }
   @computed
   get inputCategory() {
+    console.log(this.inputType);
     if (this.inputType === "dbSNP" || this.inputType === "HGVS") {
       return "Variant";
     }
@@ -56,7 +61,7 @@ class Store {
     ) {
       return "Genes";
     }
-    return "reererre";
+    return "Dunno category :(";
   }
 
   @action
@@ -69,12 +74,11 @@ class Store {
   }
   @action
   sendRequest() {
-    let state = this;
-    state.loading = true;
-    state.inputType = "";
+    let newstate = this;
+    newstate.loading = true;
     setTimeout(function() {
-      state.loading = false;
-      state.results = true;
+      newstate.loading = false;
+      newstate.results = true;
     }, 1200);
   }
 

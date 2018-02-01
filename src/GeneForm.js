@@ -17,7 +17,7 @@ class GeneForm extends Component {
   }
 
   handleInput = value => {
-    console.log(value);
+    Store.selectedConsequence = value;
   };
 
   handleAlleleFrequencyToggle = (e, isToggled) => {

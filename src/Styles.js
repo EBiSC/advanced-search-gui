@@ -7,6 +7,19 @@ const styles = {
   App: {
     padding: "16px"
   },
+  LogoHeight: {
+    height: "32px"
+  },
+  AlignRight: {
+    textAlign: "right"
+  },
+  AppBar: {
+    padding: "16px 16px",
+    borderBottom: "1px solid rgba(84,110,122,0.25)",
+    width: "100%",
+    margin: "0 auto",
+    boxSizing: "border-box"
+  },
   spacing: {
     padding: "32px",
     margin: "32px 0"
@@ -17,6 +30,7 @@ const styles = {
   underlineDarkFocused: {
     borderColor: "#90A4AE"
   },
+  positionRelative: { position: "relative" },
   results: {
     boxSizing: "border-box",
     border: "1px solid rgba(84,110,122,0.65)",

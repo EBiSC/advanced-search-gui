@@ -11,7 +11,6 @@ body {
   color: #c4cfd4;
   font-weight: 300;
 }
-
 #login {
   border: 2px solid #c2c2c2;
   margin: 32px auto;
@@ -22,13 +21,11 @@ body {
   padding: 32px 16px;
   background: #c2c2c2;
 }
-
 #loginFooter {
   background: #333;
   padding: 32px;
   color: white;
 }
-
 .ball {
   height: 60px;
   width: 60px;
@@ -42,7 +39,6 @@ body {
   flex-direction: row;
   border: 3px solid #333;
 }
-
 .box {
   margin: 32px;
   min-height: 400px;
@@ -51,7 +47,6 @@ body {
   transition: opacity 0.9s cubic-bezier(0.645, 0.045, 0.355, 1),
     transform 1s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
-
 h2 {
   color: #222b2f;
   font-size: 25px;
@@ -63,24 +58,20 @@ h2 {
   list-style-type: none;
   padding: 0 0 0 16px;
 }
-
 .tutorial ul li {
   padding: 8px 0;
   font-size: 22px;
   text-decoration: underline;
 }
-
 .tutorial ul li small {
   text-decoration: none;
   padding: 16px;
   font-size: 16px;
   display: block;
 }
-
 .tutorial ul li small:first-child {
   padding-top: 32px;
 }
-
 .blue,
 .green,
 .red {

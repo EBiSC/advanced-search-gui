@@ -7,7 +7,7 @@ import Slider from "material-ui/Slider";
 import { Row, Col } from "react-grid-system";
 
 @observer
-class Form extends Component {
+class VariantForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -115,68 +115,8 @@ class Form extends Component {
             </div>
           </Col>
         </Row>
-
-        {/*
-        <div style={{ marginTop: "22px" }}>
-          <div>
-            <Toggle
-              label={
-                "ALLELE FREQUENCY " +
-                (this.state.showAlleleFrequencyOptions
-                  ? Store.allelefreq + "%"
-                  : "")
-              }
-              toggled={this.state.showAlleleFrequencyOptions}
-              onToggle={this.handleToggle.bind(this)}
-            />
-
-            {this.state.showAlleleFrequencyOptions && (
-              <div>
-                <Slider
-                  min={0}
-                  max={100}
-                  step={5}
-                  defaultValue={Store.allelefreq}
-                  style={{ color: "#333", fill: "red", borderColor: "red" }}
-                  onChange={(e, value) => {
-                    Store.allelefreq = value;
-                  }}
-                />
-              </div>
-            )}
-
-            <Toggle
-              toggled={this.state.showZygosityOptions}
-              label="ZYGOSITY"
-              onToggle={this.handleToggle2.bind(this)}
-            />
-
-            {this.state.showZygosityOptions && (
-              <div>
-                <RadioButtonGroup name="allelefreq" defaultSelected="community">
-                  <RadioButton
-                    style={{
-                      padding: "8px"
-                    }}
-                    value="Heterozygous"
-                    label="Heterozygous"
-                  />
-                  <RadioButton
-                    style={{
-                      padding: "8px"
-                    }}
-                    value="Homozygous"
-                    label="Homozygous"
-                  />
-                </RadioButtonGroup>
-              </div>
-            )}
-          </div>
-        </div>
-
-        */}
       </div>
     );
   }
 }
-export default Form;
+export default VariantForm;
