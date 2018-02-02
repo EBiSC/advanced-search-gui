@@ -8,11 +8,11 @@ import Title from "./Title";
 import Form from "./EBISC";
 import Store from "./Store";
 import sampleData from "./sample.json";
-
+     
 @observer
 class App extends Component {
   componentDidMount() {
-    console.log("Sample HIPSCI Data", sampleData);
+               console.log("Sample HIPSCI Data", sampleData);
   }
 
   render() {
@@ -20,14 +20,14 @@ class App extends Component {
       <MuiThemeProvider muiTheme={muiTheme}>
         <div>
           <AppBar />
-          <div style={Styles.container}>
+               <div style={Styles.container}>
             <Title />
             <div style={Styles.App} >
               <Form />
             </div>
           </div>
         </div>
-      </MuiThemeProvider>
+           </MuiThemeProvider>
     );
   }
 }

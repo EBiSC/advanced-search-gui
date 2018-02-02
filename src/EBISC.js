@@ -12,9 +12,10 @@ import Chip from "./Chip";
 import { duration, defaultStyle, transitionStyles } from "./ui/uiAnimations";
 
 @observer
-class EBISC extends Component {
+class   EBISC extends Component {
   componentDidMount() {
     //Load Variant Consequences
+    //STORE
     fetch(
       "https://rest.ensembl.org/info/variation/consequence_types?content-type=application/json"
     )
@@ -33,11 +34,14 @@ class EBISC extends Component {
   render() {
     return (
       <div>
-        <div>
+
           <Snackbar />
-          <SearchBox />
-        </div>
-        <Chip />
+              <SearchBox />
+                 <Chip />
+
+
+
+
         <div style={Styles.positionRelative}>
           <Transition
             in={
