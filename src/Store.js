@@ -83,17 +83,23 @@ class Store {
   }
 
   @action
-  fetchStuff(url) {
-    return fetch(url).then(x => x.json());
+  fetchVariantConsequences() {
+    this.fetchStuff(
+      "https://rest.ensembl.org/info/variation/consequence_types?content-type=application/json"
+    ).then(x => {
+      x.push({ SO_term: "loss of function" });
+      x = x.map(x => x.SO_term);
+      x = x
+        .join()
+        .replace(/_/g, " ")
+        .split(",");
+      this.consequenceAutocompleteArray = x;
+    });
   }
 
-  @computed
-  get getOpacity() {
-    console.log("SLIDE INDEX", this.slideIndex);
-    var arr = [0.35, 0.35, 0.35];
-    arr.splice(this.slideIndex, 1, 1);
-    console.log(arr);
-    return arr;
+  @action
+  fetchStuff(url) {
+    return fetch(url).then(x => x.json());
   }
 }
 

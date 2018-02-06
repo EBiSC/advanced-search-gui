@@ -14,7 +14,7 @@ class AppBar extends Component {
         <Col style={Styles.AlignRight} sm={6}>
           <img alt="HIPSCI Logo" style={Styles.LogoHeight} src={HIPSCILogo} />
         </Col>
-          </Row>
+      </Row>
     );
   }
 }

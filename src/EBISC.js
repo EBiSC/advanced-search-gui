@@ -8,83 +8,38 @@ import VariantForm from "./VariantForm";
 import Results from "./Results";
 import GeneForm from "./GeneForm";
 import Snackbar from "./SnackBar";
+import Transitions from "./Transitions";
 import Chip from "./Chip";
-import { duration, defaultStyle, transitionStyles } from "./ui/uiAnimations";
 
 @observer
-class   EBISC extends Component {
+class EBISC extends Component {
   componentDidMount() {
     //Load Variant Consequences
-    //STORE
-    fetch(
-      "https://rest.ensembl.org/info/variation/consequence_types?content-type=application/json"
-    )
-      .then(x => x.json())
-      .then(x => {
-        x.push({ SO_term: "loss of function" });
-        x = x.map(x => x.SO_term);
-        x = x
-          .join()
-          .replace(/_/g, " ")
-          .split(",");
-        Store.consequenceAutocompleteArray = x;
-      });
+    Store.fetchVariantConsequences();
   }
 
   render() {
     return (
       <div>
-
-          <Snackbar />
-              <SearchBox />
-                 <Chip />
-
-
-
-
+        {/* Error Reporting */}
+        <Snackbar />
+        {/* Autocomplete SearchBox */}
+        <SearchBox />
+        <Chip />
         <div style={Styles.positionRelative}>
-          <Transition
-            in={
+          <Transitions
+            form="VariantForm"
+            if={
               Store.inputCategory === "Variant" && !Store.results ? true : false
             }
-            timeout={duration}>
-            {state => (
-              <div
-                style={{
-                  ...defaultStyle,
-                  ...transitionStyles[state]
-                }}>
-                <VariantForm />
-              </div>
-            )}
-          </Transition>
-          <Transition
-            in={
+          />
+          <Transitions
+            form="GeneForm"
+            if={
               Store.inputCategory === "Genes" && !Store.results ? true : false
             }
-            timeout={duration}>
-            {state => (
-              <div
-                style={{
-                  ...defaultStyle,
-                  ...transitionStyles[state]
-                }}>
-                <GeneForm />
-              </div>
-            )}
-          </Transition>
-
-          <Transition in={Store.results ? true : false} timeout={duration}>
-            {state => (
-              <div
-                style={{
-                  ...defaultStyle,
-                  ...transitionStyles[state]
-                }}>
-                <Results />
-              </div>
-            )}
-          </Transition>
+          />
+          <Transitions form="Results" if={Store.results ? true : false} />
         </div>
       </div>
     );
