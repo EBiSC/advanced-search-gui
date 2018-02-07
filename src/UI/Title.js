@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Styles from "./Styles";
+import Styles from "../UI/UiStyles";
 
 class Title extends Component {
   render() {

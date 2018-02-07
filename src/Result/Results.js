@@ -1,12 +1,9 @@
 import React, { Component } from "react";
 import { observer } from "mobx-react";
-import Store from "./Store";
-import Styles from "./Styles";
+import Store from "../Store";
+import Styles from "../UI/UiStyles";
 import ResultBlock from "./ResultBlock";
 import NoResults from "./NoResults";
-import { List, ListItem } from "material-ui/List";
-import { Row, Col } from "react-grid-system";
-import RaisedButton from "material-ui/RaisedButton";
 
 @observer
 class Results extends Component {
@@ -17,13 +14,7 @@ class Results extends Component {
   render() {
     return (
       <div style={Styles.results}>
-        <header
-          style={{
-            borderTopLeftRadius: "8px",
-            borderTopRightRadius: "8px",
-            background: "#D0D8DD",
-            padding: "16px 32px"
-          }}>
+        <header style={Styles.ResultsHeader}>
           <h2
             style={{
               margin: "16px 0"
@@ -53,38 +44,20 @@ class Results extends Component {
             Store.allelefreq > 5 ? (
               <ResultBlock />
             ) : (
-              <NoResults />
-            )
+                <NoResults />
+              )
           ) : Store.inputType === "GO" ? (
             Store.selectedConsequence === "loss of function" ? (
               <ResultBlock />
             ) : (
-              <NoResults />
-            )
+                <NoResults />
+              )
           ) : (
+                <ResultBlock />
+              )
+        ) : (
             <ResultBlock />
-          )
-        ) : (
-          <ResultBlock />
-        )}
-
-        {/*
-        {Store.inputCategory === "Genes" ? (
-          Store.selectedConsequence === "loss of function" ? (
-            Store.allelefreq === 10 ? (
-              <ResultBlock />
-            ) : (
-              <NoResults />
-            )
-          ) : (
-            <NoResults />
-          )
-        ) : (
-          <ResultBlock />
-        )}
-
-
-        */}
+          )}
       </div>
     );
   }

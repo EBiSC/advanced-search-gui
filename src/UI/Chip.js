@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { observer } from "mobx-react";
-import Styles from "./Styles";
-import Store from "./Store";
+import Styles from "../UI/UiStyles";
+import Store from "../Store";
 
 @observer
 class Chip extends Component {
@@ -9,9 +9,7 @@ class Chip extends Component {
     return (
       <div>
         {Store.inputType !== "" && (
-          <div>
-            <span style={Styles.chipLeft}>{Store.inputType}</span>
-          </div>
+          <span style={Styles.chipLeft}>{Store.inputType}</span>
         )}
       </div>
     );

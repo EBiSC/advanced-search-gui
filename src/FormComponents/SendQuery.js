@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { observer } from "mobx-react";
-import Store from "./Store";
+import Store from "../Store";
 import FloatingActionButton from "material-ui/FloatingActionButton";
 import ContentSearch from "material-ui/svg-icons/action/search";
 
@@ -14,7 +14,6 @@ class SendQuery extends Component {
     return (
       <FloatingActionButton
         onClick={this.handleSend}
-        style={{}}
         backgroundColor="#45565F">
         <ContentSearch />
       </FloatingActionButton>

@@ -11,6 +11,7 @@ class Store {
   @observable userSelection = "VARIANT";
   @observable zygosity = "";
   @observable alleleToggle = true;
+  @observable zygosityToggle = true;
   @observable allelefreq = 5;
   @observable inputType = "";
   //AUTHENTICATION
@@ -26,6 +27,7 @@ class Store {
   @observable dropdown = 1;
   //snackbar
   @observable snackbar = false;
+  @observable snackbarText = "This will take you to the HIPSCI/EBISC website in the final product.";
   //Animation
   @observable slideIndex = 0;
   @observable transforms = ["translateY(120px)", "translateX(1400px)"];
@@ -47,7 +49,6 @@ class Store {
   }
   @computed
   get inputCategory() {
-    console.log(this.inputType);
     if (this.inputType === "dbSNP" || this.inputType === "HGVS") {
       return "Variant";
     }
@@ -76,7 +77,7 @@ class Store {
   sendRequest() {
     let newstate = this;
     newstate.loading = true;
-    setTimeout(function() {
+    setTimeout(function () {
       newstate.loading = false;
       newstate.results = true;
     }, 1200);
@@ -98,7 +99,38 @@ class Store {
   }
 
   @action
-  fetchStuff(url) {
+  fetchGoSuggest = () => {
+    this.fetchStuff(
+      "https://www.ebi.ac.uk/ols/api/select?ontology=go&q=" + this.searchText
+    ).then(x => {
+      this.autocompleteArray = x.response.docs.map(
+        x => x.obo_id + " " + x.label
+      );
+    });
+  }
+
+  @action
+  fetchGeneSuggest = () => {
+    fetch("https://www.ebi.ac.uk/ols/api/select?ontology=ogg&q=" + this.searchText)
+      .then(x => x.json())
+      .then(x => {
+        if (x.response.numFound !== 0) {
+          this.autocompleteArray = x.response.docs.map(x => x.label);
+          this.inputType = "Gene Symbol";
+        }
+      });
+  }
+  @action
+  resetFields = () => {
+    // Put in Store
+    this.inputType = "";
+    this.zygosity = "";
+    this.selectedConsequence = "";
+    this.results = false;
+  }
+
+  @action
+  fetchStuff = (url) => {
     return fetch(url).then(x => x.json());
   }
 }

@@ -7,11 +7,35 @@ const styles = {
   App: {
     padding: "16px"
   },
+  Resultblock: {
+    padding: "16px 32px 40px",
+    fontSize: "18px",
+    fontWeight: "300",
+    position: "relative"
+  },
   LogoHeight: {
     height: "32px"
   },
+  RowMargin: {
+    margin: "24px 0"
+  },
+  ResultsHeader: {
+    borderTopLeftRadius: "8px",
+    borderTopRightRadius: "8px",
+    background: "#D0D8DD",
+    padding: "16px 32px"
+  },
   AlignRight: {
     textAlign: "right"
+  },
+  Slider: { marginBottom: "38px" },
+  ThumbSwitch: { backgroundColor: "#5E7682" },
+  TrackSwitch: { backgroundColor: "#B8C5CC" },
+  FormColumn: {
+    boxSizing: "border-box",
+    padding: "16px",
+    border: "1px solid rgba(84,110,122,0.65)",
+    borderRadius: "8px"
   },
   AutoCompleteLabel: {
     cursor: "default",

@@ -1,11 +1,9 @@
 import React, { Component } from "react";
-import Styles from "./Styles";
-import { duration, defaultStyle, transitionStyles } from "./ui/uiAnimations";
-import Store from "./Store";
-import VariantForm from "./VariantForm";
+import { duration, defaultStyle, transitionStyles } from "../UI/uiAnimations";
 import Transition from "react-transition-group/Transition";
-import Results from "./Results";
-import GeneForm from "./GeneForm";
+import VariantForm from "../Forms/VariantForm";
+import Results from "../Result/Results";
+import GeneForm from "../Forms/GeneForm";
 
 class Transitions extends Component {
   render() {
@@ -17,6 +15,7 @@ class Transitions extends Component {
     const DynamicForm = componentList[this.props.form];
     return (
       <div>
+        <VariantForm />
         <Transition in={this.props.if} timeout={duration}>
           {state => (
             <div

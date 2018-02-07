@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { observer } from "mobx-react";
-import Store from "./Store";
-import Styles from "./Styles";
+import Store from "../Store";
+import Styles from "../UI/UiStyles";
 import { List, ListItem } from "material-ui/List";
 import { Row, Col } from "react-grid-system";
 import RaisedButton from "material-ui/RaisedButton";
@@ -15,12 +15,7 @@ class ResultBlock extends Component {
   render() {
     return (
       <div
-        style={{
-          padding: "16px 32px 40px",
-          fontSize: "18px",
-          fontWeight: "300",
-          position: "relative"
-        }}>
+        style={Styles.ResultBlock}>
         <h2
           style={{
             margin: "16px",

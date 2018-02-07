@@ -14,5 +14,4 @@ const transitionStyles = {
     transform: "translateY(0)"
   }
 };
-
 export { duration, defaultStyle, transitionStyles };
