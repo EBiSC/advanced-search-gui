@@ -60,12 +60,12 @@ class SearchBox extends Component {
             underlineStyle={{ display: "none" }}
             textFieldStyle={Styles.input}
           />
-          /* Circular Loading Icon*/
+          {/* Circular Loading Icon*/}
           {Store.loading && <Loading />}
-          /* Search Box Label */
+          {/* Search Box Label */}
           <SearchBoxLabel />
 
-          /* Send Button - Only appears when the seach box isn't empty and no ongoing data-loading is in place */
+          {/* Send Button - Only appears when the seach box isn't empty and no ongoing data-loading is in place */}
           {Store.inputType !== "" &&
             !Store.loading && (
               <SendButton />
