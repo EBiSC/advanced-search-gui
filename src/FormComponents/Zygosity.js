@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import Store from "../Store";
-import { observer } from "mobx-react";
-import ToggleButton from "./ToggleButton";
-import { RadioButton, RadioButtonGroup } from "material-ui/RadioButton";
+import React, { Component } from "react"
+import Store from "../Store"
+import { observer } from "mobx-react"
+import ToggleButton from "./ToggleButton"
+import { RadioButton, RadioButtonGroup } from "material-ui/RadioButton"
 
 @observer
 class Zygosity extends Component {
@@ -14,7 +14,7 @@ class Zygosity extends Component {
                 <div>
                     <RadioButtonGroup
                         onChange={(e, value) => {
-                            Store.zygosity = value;
+                            Store.zygosity = value
                         }}
                         name="zygosity">
                         <RadioButton
@@ -39,4 +39,4 @@ class Zygosity extends Component {
         );
     }
 }
-export default Zygosity;
+export default Zygosity

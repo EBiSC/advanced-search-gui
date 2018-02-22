@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import Styles from "../UI/UiStyles";
+import React, { Component } from "react"
+import Styles from "../UI/UiStyles"
 
 class Title extends Component {
   render() {
@@ -12,4 +12,4 @@ class Title extends Component {
     );
   }
 }
-export default Title;
+export default Title

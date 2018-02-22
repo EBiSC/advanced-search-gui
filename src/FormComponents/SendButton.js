@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { observer } from "mobx-react";
-import Styles from "../UI/UiStyles";
-import SendQuery from "./SendQuery";
+import React, { Component } from "react"
+import { observer } from "mobx-react"
+import Styles from "../UI/UiStyles"
+import SendQuery from "./SendQuery"
 
 @observer
 class SendButton extends Component {
@@ -14,4 +14,4 @@ class SendButton extends Component {
         );
     }
 }
-export default SendButton;
+export default SendButton

@@ -1,14 +1,14 @@
-import React, { Component } from "react";
-import { observer } from "mobx-react";
-import Toggle from "material-ui/Toggle";
-import Store from "../Store";
-import Styles from "../UI/UiStyles";
+import React, { Component } from "react"
+import { observer } from "mobx-react"
+import Toggle from "material-ui/Toggle"
+import Store from "../Store"
+import Styles from "../UI/UiStyles"
 
 @observer
 class ToggleButton extends Component {
 
     handleToggle(e, isToggled) {
-        Store[this.props.value] = isToggled;
+        Store[this.props.value] = isToggled
     }
     render() {
         return (
@@ -23,4 +23,4 @@ class ToggleButton extends Component {
         );
     }
 }
-export default ToggleButton;
+export default ToggleButton

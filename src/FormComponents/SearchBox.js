@@ -1,48 +1,28 @@
-import React, { Component } from "react";
-import { observer } from "mobx-react";
-import Styles from "../UI/UiStyles";
-import Store from "../Store";
-import Loading from "./Loading";
-import SendButton from "./SendButton";
-import SearchBoxLabel from "./SearchBoxLabel";
-import AutoComplete from "material-ui/AutoComplete";
-
-const regexes = [
-  { pattern: /^rs\d+$/, name: "dbSNP" },
-  { pattern: /^([^ :]+):.*?([cgmrp]?)\.?([*\-0-9]+.[^ ]*)/, name: "HGVS" }
-];
+import React, { Component } from "react"
+import { observer } from "mobx-react"
+import Styles from "../UI/UiStyles"
+import Store from "../Store"
+import Loading from "./Loading"
+import SendButton from "./SendButton"
+import SearchBoxLabel from "./SearchBoxLabel"
+import AutoComplete from "material-ui/AutoComplete"
 
 @observer
 class SearchBox extends Component {
-  // Not sure about Proceed yet 
+
   onPressEnter = (value, index) => {
     if (index === -1 && Store.inputType !== "" && !Store.loading) {
-      Store.sendRequest();
+      Store.sendRequest()
     }
   };
 
   handleInput = async value => {
     // Reset Fields
-    Store.resetFields();
+    Store.resetFields()
     // Store User Input 
     Store.searchText = value;
-    //Check for GO Terms
-    if (value.toUpperCase().indexOf("GO:") === 0) {
-      console.log("Looking up GO Terms");
-      Store.inputType = "GO";
-      await Store.fetchGoSuggest();
-      return;
-    }
-    //Check for Gene Symbols
-    if (value.length >= 2 && Store.inputType === "") {
-      await Store.fetchGeneSuggest();
-      return;
-    }
-    regexes.forEach(x => {
-      value.trim().match(x.pattern) ? (Store.inputType = x.name) : false;
-    });
+    Store.getInputType()
   };
-
 
   render() {
     return (
@@ -55,7 +35,7 @@ class SearchBox extends Component {
             autoFocus
             fullWidth
             name="userInput"
-            placeholder={Store.placeholder}
+            placeholder={Store.placeholderText}
             onUpdateInput={this.handleInput}
             underlineStyle={{ display: "none" }}
             textFieldStyle={Styles.input}
@@ -66,14 +46,14 @@ class SearchBox extends Component {
           <SearchBoxLabel />
 
           {/* Send Button - Only appears when the seach box isn't empty and no ongoing data-loading is in place */}
-          {Store.inputType !== "" &&
+          {Store.searchText !== "" &&
             !Store.loading && (
               <SendButton />
             )}
 
         </div>
       </div>
-    );
+    )
   }
 }
-export default SearchBox;
+export default SearchBox

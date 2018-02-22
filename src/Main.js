@@ -1,16 +1,16 @@
-import React, { Component } from "react";
-import { observer } from "mobx-react";
-import Store from "./Store";
-import Styles from "./UI/UiStyles";
-import SearchBox from "./FormComponents/SearchBox";
-import Transitions from "./UI/Transitions";
-import Chip from "./UI/Chip";
+import React, { Component } from "react"
+import { observer } from "mobx-react"
+import Store from "./Store"
+import Styles from "./UI/UiStyles"
+import SearchBox from "./FormComponents/SearchBox"
+import Transitions from "./UI/Transitions"
+import Chip from "./UI/Chip"
 
 @observer
 class Main extends Component {
   render() {
-    let showVariantForm = Store.inputCategory === "Variant" && !Store.results ? true : false;
-    let showGeneForm = Store.inputCategory === "Genes" && !Store.results ? true : false;
+    let showVariantForm = Store.inputCategory === "Variant" && !Store.results ? true : false
+    let showGeneForm = Store.inputCategory === "Gene" && !Store.results ? true : false
     return (
       <div>
         {/* Autocomplete SearchBox */}
@@ -27,4 +27,4 @@ class Main extends Component {
     );
   }
 }
-export default Main;
+export default Main

@@ -1,13 +1,13 @@
-import React, { Component } from "react";
-import { observer } from "mobx-react";
-import Store from "../Store";
-import FloatingActionButton from "material-ui/FloatingActionButton";
-import ContentSearch from "material-ui/svg-icons/action/search";
+import React, { Component } from "react"
+import { observer } from "mobx-react"
+import Store from "../Store"
+import FloatingActionButton from "material-ui/FloatingActionButton"
+import ContentSearch from "material-ui/svg-icons/action/search"
 
 @observer
 class SendQuery extends Component {
   handleSend = () => {
-    Store.sendRequest();
+    Store.sendRequest()
   };
 
   render() {
@@ -20,4 +20,4 @@ class SendQuery extends Component {
     );
   }
 }
-export default SendQuery;
+export default SendQuery

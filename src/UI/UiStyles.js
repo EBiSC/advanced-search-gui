@@ -173,4 +173,4 @@ const styles = {
     display: "inline-block "
   }
 };
-export default styles;
+export default styles

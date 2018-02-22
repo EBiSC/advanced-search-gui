@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { observer } from "mobx-react";
+import React, { Component } from "react"
+import { observer } from "mobx-react"
 
 @observer
 class NoResults extends Component {
@@ -17,4 +17,4 @@ class NoResults extends Component {
     );
   }
 }
-export default NoResults;
+export default NoResults

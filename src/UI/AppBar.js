@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import Styles from "../UI/UiStyles";
-import EBISCLogo from "../img/ebisc.png";
-import HIPSCILogo from "../img/hipsci.png";
-import { Row, Col } from "react-grid-system";
+import React, { Component } from "react"
+import Styles from "../UI/UiStyles"
+import EBISCLogo from "../img/ebisc.png"
+import HIPSCILogo from "../img/hipsci.png"
+import { Row, Col } from "react-grid-system"
 
 class AppBar extends Component {
   render() {
@@ -15,8 +15,8 @@ class AppBar extends Component {
           <img alt="HIPSCI Logo" style={Styles.LogoHeight} src={HIPSCILogo} />
         </Col>
       </Row>
-    );
+    )
   }
 }
 
-export default AppBar;
+export default AppBar

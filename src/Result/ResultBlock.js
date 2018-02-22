@@ -1,15 +1,15 @@
-import React, { Component } from "react";
-import { observer } from "mobx-react";
-import Store from "../Store";
-import Styles from "../UI/UiStyles";
-import { List, ListItem } from "material-ui/List";
-import { Row, Col } from "react-grid-system";
-import RaisedButton from "material-ui/RaisedButton";
+import React, { Component } from "react"
+import { observer } from "mobx-react"
+import Store from "../Store"
+import Styles from "../UI/UiStyles"
+import { List, ListItem } from "material-ui/List"
+import { Row, Col } from "react-grid-system"
+import RaisedButton from "material-ui/RaisedButton"
 
 @observer
 class ResultBlock extends Component {
   handleClick = () => {
-    Store.snackbar = true;
+    Store.snackbar = true
   };
 
   render() {
@@ -75,4 +75,4 @@ class ResultBlock extends Component {
     );
   }
 }
-export default ResultBlock;
+export default ResultBlock

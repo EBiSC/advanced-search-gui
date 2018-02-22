@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { observer } from "mobx-react";
-import Styles from "../UI/UiStyles";
-import Store from "../Store";
+import React, { Component } from "react"
+import { observer } from "mobx-react"
+import Styles from "../UI/UiStyles"
+import Store from "../Store"
 
 @observer
 class Chip extends Component {
@@ -15,4 +15,4 @@ class Chip extends Component {
     );
   }
 }
-export default Chip;
+export default Chip

@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { observer } from "mobx-react";
-import Styles from "../UI/UiStyles";
-import { Row, Col } from "react-grid-system";
+import React, { Component } from "react"
+import { observer } from "mobx-react"
+import Styles from "../UI/UiStyles"
+import { Row, Col } from "react-grid-system"
 import VariationConsequence from "../FormComponents/VariationConsequence"
 import AlleleFrequency from "../FormComponents/AlleleFrequency"
 
@@ -29,4 +29,4 @@ class GeneForm extends Component {
     );
   }
 }
-export default GeneForm;
+export default GeneForm

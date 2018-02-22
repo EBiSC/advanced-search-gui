@@ -1,0 +1,10 @@
+What is Jest?
+Jest is a testing library that can be used to test simple Javascript code or React components. This is done through simple API that Jest provides to users. Using this API it is possible to make assertions on how functions should behave and then test our expected outcome against the test outcome. It is very easy to set up and is usable right out of the box. Thats why its the preferred testing library for Facebook. A cool feature that Jest has is snapshots. This takes a snapshot of your component and how it renders and then will compare that whenever doing other tests to let you know if something unexpected is happening. I won’t go into too much detail on snapshots because I’ll cover those in another post. When using Jest with Enzyme it is possible to test components through a mock DOM.
+
+What is Enzyme?
+Enzyme is another library commonly used with either Jest or Mocha and Chai. With Enzyme we can create a mock DOM to test whether components are rendered correctly, and whether they behave correctly when acted upon. Enzyme’s mock rendering can either be done through shallow rendering or full DOM rendering.
+
+Shallow rendering is used when doing unit testing of a component. This allows for tests to focus only on that component and how it functions, without caring about other components it might interact with.
+
+Full DOM rendering involves rendering your component and all children components. The allows for more in-depth testing to see how your components on the DOM interact with each other.
+

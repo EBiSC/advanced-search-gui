@@ -1,13 +1,13 @@
-import React, { Component } from "react";
-import { observer } from "mobx-react";
-import Store from "../Store";
-import AutoComplete from "material-ui/AutoComplete";
+import React, { Component } from "react"
+import { observer } from "mobx-react"
+import Store from "../Store"
+import AutoComplete from "material-ui/AutoComplete"
 
 @observer
 class VariationConsequence extends Component {
 
     handleInput = value => {
-        Store.selectedConsequence = value;
+        Store.selectedConsequence = value
     };
 
     render() {
@@ -26,4 +26,4 @@ class VariationConsequence extends Component {
         );
     }
 }
-export default VariationConsequence;
+export default VariationConsequence
