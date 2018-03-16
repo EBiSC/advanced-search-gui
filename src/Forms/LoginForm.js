@@ -25,10 +25,12 @@ class LoginForm extends Component {
             <div style={{ margin: "80px auto", width: "560px", padding: "16px" }}>
                 <form onSubmit={this.handleLogin}>
                     <TextField
+                        label="Email"
                         underlineFocusStyle={{ borderColor: "#546e7af2" }}
                         required onChange={(e) => this.handleInput(e, USERNAME)} fullWidth hintText="Email" type="email" id="email"
                     /><br /> <br />
                     <TextField
+                        label="Password"
                         underlineFocusStyle={{ borderColor: "#546e7af2" }}
                         errorText={Store.authError} required onChange={(e) => this.handleInput(e, PASSWORD)} fullWidth hintText="Password" type="password" id="password"
                     /><br />

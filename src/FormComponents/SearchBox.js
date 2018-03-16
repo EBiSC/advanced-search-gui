@@ -6,6 +6,8 @@ import Loading from "./Loading"
 import SendButton from "./SendButton"
 import SearchBoxLabel from "./SearchBoxLabel"
 import AutoComplete from "material-ui/AutoComplete"
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import getMuiTheme from 'material-ui/styles/getMuiTheme'
 
 @observer
 class SearchBox extends Component {
@@ -23,12 +25,13 @@ class SearchBox extends Component {
     // Store User Input 
     Store.searchText = value;
     Store.getInputType()
-  };
+  }
 
   render() {
     return (
       <div>
         <div style={Styles.SearchBox}>
+
           <AutoComplete
             errorText={Store.searchError}
             onNewRequest={this.onPressEnter}
@@ -42,6 +45,7 @@ class SearchBox extends Component {
             underlineStyle={{ display: "none" }}
             textFieldStyle={Styles.input}
           />
+
           {/* Circular Loading Icon*/}
           {Store.loading && <Loading />}
           {/* Search Box Label */}
