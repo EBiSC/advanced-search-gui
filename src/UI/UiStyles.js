@@ -28,13 +28,12 @@ const styles = {
   AlignRight: {
     textAlign: "right"
   },
-  Slider: { marginBottom: "38px" },
+  Slider: { marginBottom: "38px", marginTop: "17px" },
   ThumbSwitch: { backgroundColor: "#5E7682" },
   TrackSwitch: { backgroundColor: "#B8C5CC" },
   FormColumn: {
     boxSizing: "border-box",
     padding: "16px",
-    border: "1px solid rgba(84,110,122,0.65)",
     borderRadius: "8px"
   },
   AutoCompleteLabel: {
@@ -85,7 +84,6 @@ const styles = {
   positionRelative: { position: "relative" },
   results: {
     boxSizing: "border-box",
-    border: "1px solid rgba(84,110,122,0.65)",
     borderTopLeftRadius: "10px",
     borderTopRightRadius: "10px",
     borderBottomLeftRadius: "8px",

@@ -11,10 +11,11 @@ import AutoComplete from "material-ui/AutoComplete"
 class SearchBox extends Component {
 
   onPressEnter = (value, index) => {
+    // index -1 is for enter key
     if (index === -1 && Store.inputType !== "" && !Store.loading) {
       Store.sendRequest()
     }
-  };
+  }
 
   handleInput = async value => {
     // Reset Fields
@@ -29,6 +30,7 @@ class SearchBox extends Component {
       <div>
         <div style={Styles.SearchBox}>
           <AutoComplete
+            errorText={Store.searchError}
             onNewRequest={this.onPressEnter}
             filter={AutoComplete.caseInsensitiveFilter}
             dataSource={Store.autocompleteArray.slice()}
@@ -44,7 +46,6 @@ class SearchBox extends Component {
           {Store.loading && <Loading />}
           {/* Search Box Label */}
           <SearchBoxLabel />
-
           {/* Send Button - Only appears when the seach box isn't empty and no ongoing data-loading is in place */}
           {Store.searchText !== "" &&
             !Store.loading && (

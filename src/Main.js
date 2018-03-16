@@ -4,19 +4,22 @@ import Store from "./Store"
 import Styles from "./UI/UiStyles"
 import SearchBox from "./FormComponents/SearchBox"
 import Transitions from "./UI/Transitions"
+/*
 import Chip from "./UI/Chip"
+*/
 
 @observer
 class Main extends Component {
   render() {
-    let showVariantForm = Store.inputCategory === "Variant" && !Store.results ? true : false
-    let showGeneForm = Store.inputCategory === "Gene" && !Store.results ? true : false
+    let showVariantForm = Store.inputCategory === "Variant" ? true : false && !Store.loading
+    let showGeneForm = Store.inputCategory === "Gene" ? true : false && !Store.loading
+
     return (
       <div>
         {/* Autocomplete SearchBox */}
         <SearchBox />
-        {/* Chip to confirm what the user entered */}
-        <Chip />
+        {/* Chip to confirm what the user entered 
+        <Chip />*/}
         <div style={Styles.positionRelative}>
           {/* Animating between Genes Form, Variant Form and Results depending on STATE! */}
           <Transitions form="VariantForm" if={showVariantForm} />

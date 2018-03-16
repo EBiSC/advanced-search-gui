@@ -17,12 +17,12 @@ class VariantForm extends Component {
               ...Styles.FormColumn,
               marginRight: "16px"
             }}>
-            <AlleleFrequency />
+            <Zygosity />
           </div>
         </Col>
         <Col sm={6}>
           <div style={Styles.FormColumn}>
-            <Zygosity />
+            <AlleleFrequency />
           </div>
         </Col>
       </Row>

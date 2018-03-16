@@ -1,39 +1,37 @@
 import React, { Component } from "react"
 import Store from "../Store"
 import { observer } from "mobx-react"
-import ToggleButton from "./ToggleButton"
-import { RadioButton, RadioButtonGroup } from "material-ui/RadioButton"
+import { MenuItem } from 'material-ui/Menu'
+import { FormControl, FormHelperText } from 'material-ui/Form'
+import Select from 'material-ui/Select'
+
+const zygosityOptions = ["All", "Heterozygous", "Homozygous"]
 
 @observer
 class Zygosity extends Component {
 
+    handleChange = (e) => {
+        Store.zygosity = e.target.value
+    }
+
+
     render() {
         return (
             <div>
-                <ToggleButton label="ZYGOSITY" value="zygosityToggle" />
                 <div>
-                    <RadioButtonGroup
-                        onChange={(e, value) => {
-                            Store.zygosity = value
-                        }}
-                        name="zygosity">
-                        <RadioButton
-                            disabled={!Store.zygosityToggle}
-                            style={{
-                                padding: "8px"
-                            }}
-                            value="Heterozygous"
-                            label="Heterozygous"
-                        />
-                        <RadioButton
-                            disabled={!Store.zygosityToggle}
-                            style={{
-                                padding: "8px"
-                            }}
-                            value="Homozygous"
-                            label="Homozygous"
-                        />
-                    </RadioButtonGroup>
+                    <h2>Zygosity</h2>
+                    <FormControl style={{ width: "100%" }}>
+                        <Select
+                            style={{ width: "100%" }}
+                            value={Store.zygosity}
+                            onChange={this.handleChange}
+                        >
+                            {zygosityOptions.map(x => {
+                                return <MenuItem key={x} value={x}>{x}</MenuItem>
+                            })}
+                        </Select>
+                        <FormHelperText>Please select Zygosity</FormHelperText>
+                    </FormControl>
                 </div>
             </div>
         );

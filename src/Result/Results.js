@@ -3,6 +3,8 @@ import { observer } from "mobx-react"
 import Store from "../Store"
 import Styles from "../UI/UiStyles"
 import ResultBlock from "./ResultBlock"
+import Button from 'material-ui/Button'
+import ShareIcon from "material-ui/svg-icons/communication/screen-share"
 
 @observer
 class Results extends Component {
@@ -13,17 +15,12 @@ class Results extends Component {
         <header style={Styles.ResultsHeader}>
           <h2 style={{ margin: "16px 0" }}>
             {Store.searchText}
+            <span style={{ textAlign: "right" }}>
+              <Button onClick={() => { Store.share() }} style={{ backgroundColor: "white" }} variant="fab" color="primary" aria-label="share" >
+                <ShareIcon />
+              </Button>
+            </span>
           </h2>
-          <p style={{ color: "#4D616A" }}> <i><small>Filters applied: </small> <br />
-            Species: Homo_sapiens
-              {Store.alleleToggle
-              ? " - Allele frequency " + Store.allelefreq + "%"
-              : ""}
-            {Store.zygosity !== "" ? " - " + Store.zygosity : ""}{" "}
-            {Store.selectedConsequence !== ""
-              ? " - " + Store.selectedConsequence
-              : ""}
-          </i> </p>
         </header>
         <ResultBlock />
       </div>

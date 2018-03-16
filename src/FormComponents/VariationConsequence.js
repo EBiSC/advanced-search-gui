@@ -1,28 +1,37 @@
 import React, { Component } from "react"
 import { observer } from "mobx-react"
 import Store from "../Store"
-import AutoComplete from "material-ui/AutoComplete"
+import { MenuItem } from 'material-ui/Menu'
+import { FormControl, FormHelperText } from 'material-ui/Form'
+import Select from 'material-ui/Select'
 
 @observer
 class VariationConsequence extends Component {
 
-    handleInput = value => {
-        Store.selectedConsequence = value
-    };
+    handleChange(e) {
+        Store.selectedConsequence = e.target.value
+    }
 
     render() {
         return (
-            <div>
-                <h2>VARIATION CONSEQUENCE</h2>
-                <AutoComplete
-                    filter={AutoComplete.caseInsensitiveFilter}
-                    fullWidth
-                    onUpdateInput={this.handleInput}
-                    dataSource={Store.consequenceAutocompleteArray.slice()}
-                    underlineStyle={{ borderColor: "#ADADAD" }}
-                    hintText="e.g. stop gained"
-                />
-            </div>
+            <div style={{ height: "110px" }}>
+                <h2>Variation Consequence</h2>
+                <form>
+                    <FormControl style={{ width: "100%" }}>
+                        <Select
+                            style={{ width: "100%" }}
+                            value={Store.selectedConsequence}
+                            onChange={this.handleChange}
+                        >
+                            {Store.consequenceAutocompleteArray.map(x => {
+                                return <MenuItem key={x} value={x}>{x}</MenuItem>
+                            })}
+                        </Select>
+                        <FormHelperText>Please select a consequence</FormHelperText>
+                    </FormControl>
+                </form>
+
+            </div >
         );
     }
 }

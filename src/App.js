@@ -8,35 +8,67 @@ import AppBar from "./UI/AppBar"
 import Title from "./UI/Title"
 import Main from "./Main"
 import LoginForm from "./Forms/LoginForm"
-import Snackbar from "./UI/SnackBar"
-import sampleData from "./sampleData/sample.json"
+import Dialog from "./Dialog"
 
 @observer
 class App extends Component {
 
   componentDidMount() {
-    // Variant Consequences
-    Store.fetchVariantConsequences()
-    // Dan's Sample Data
-    console.log("Sample HIPSCI Data", sampleData)
+
+    // Check for URL Parameter
+    var url_string = window.location.href
+    var url = new URL(url_string)
+    var share = url.searchParams.get("share")
+    if (share) {
+      share = JSON.parse(share)
+      Store.inputType = share.inputType
+      Store.searchText = share.searchText
+      Store.selectedConsequence = share.consequence
+      Store.zygosity = share.zygosity
+      Store.allelefreq = share.allele_freq
+      Store.allelefreqToggle = share.allelefreqToggle
+      console.log(share)
+    }
+
+    if (localStorage["aqs_token"] && localStorage["aqs_time"]) {
+      let now = new Date()
+      let tokenTime = Date.parse(localStorage["aqs_time"])
+      console.log(localStorage["aqs_time"])
+      let diff = (now - tokenTime) / 1000
+      if (diff < 3000) {
+        Store.accessToken = localStorage["aqs_token"]
+        //Do Shared Query
+        Store.sendRequest()
+        console.log("Logout after: " + (3200 - diff) / 60)
+        setTimeout(() => { Store.accessToken = "" }, (3200 - diff) * 1000)
+      }
+      else if (share) {
+        Store.deferredQuery = true
+      }
+    }
+    /*
+    let sample = localStorage.getItem('results');
+    sample = JSON.parse(sample)
+    console.log(sample)
+    Store.results = sample
+    */
   }
+
   render() {
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
         <div>
           {/* User Feedback/Error Reporting */}
-          <Snackbar />
+          <Dialog />
           <AppBar />
-          {Store.authenticated && <p style={{ display: "block", width: "auto", fontSize: "44px", margin: "60px", textAlign: "center" }}>Location: {Store.location}</p>}
-          {!Store.authenticated && <LoginForm />}
-          {Store.authenticated &&
-            (<div style={Styles.container}>
-              <Title />
+          <div style={Styles.container}>
+            <Title />
+            {!Store.authenticated && <LoginForm />}
+            {Store.authenticated &&
               <div style={Styles.App}>
                 <Main />
-              </div>
-            </div>)}
-
+              </div>}
+          </div>
         </div>
       </MuiThemeProvider>
     );

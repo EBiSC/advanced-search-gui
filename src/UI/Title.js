@@ -6,7 +6,7 @@ class Title extends Component {
     return (
       <header style={Styles.header}>
         <h1 style={Styles.heading}>
-          Allelic Query Service <span style={Styles.subHeading}>UI</span>
+          Allelic Query Service
         </h1>
       </header>
     );

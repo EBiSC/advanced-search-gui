@@ -4,7 +4,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Roboto", sans-serif;
-  background: #fff;
+  background: #eee;
 }
 ::-webkit-input-placeholder {
   /* WebKit, Blink, Edge */
@@ -39,6 +39,13 @@ body {
   flex-direction: row;
   border: 3px solid #333;
 }
+.accordion__body {
+ padding: 0 !important; 
+}
+.accordion__title
+{
+  width:auto !important;
+}
 .box {
   margin: 32px;
   min-height: 400px;
@@ -47,11 +54,17 @@ body {
   transition: opacity 0.9s cubic-bezier(0.645, 0.045, 0.355, 1),
     transform 1s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
+h3 {
+  color: #222b2f;
+  font-size: 18px;
+  margin: 16px;
+  font-weight: 300;
+}
 h2 {
   color: #222b2f;
   font-size: 25px;
   margin: 0;
-  margin-bottom: 32px;
+  margin-bottom: 12px;
   font-weight: 300;
 }
 .tutorial ul {
