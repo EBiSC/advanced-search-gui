@@ -129,18 +129,19 @@ export class Store {
 
   @action
   share() {
-
     let url = {
       inputType: this.inputType, allele_freq: this.allelefreq, allelefreqToggle: this.allelefreqToggle, searchText: this.searchText,
       zygosity: this.zygosity, consequence: this.selectedConsequence
     }
     url = JSON.stringify(url)
-    console.log("Share URL:", window.location.href.split("?")[0] + "?share=" + url)
-    document.execCommand("copy")
-    //this.dialog.title = "Share URL Copied"
-    // this.dialog.content = `This means sharing queries with friends just got easier!`
+    return window.location.href.split("?")[0] + "?share=" + url
   }
 
+  @action
+  copied() {
+    this.dialog.title = "URL Copied!"
+    this.dialog.content = `This means sharing with your friends just got easier!`
+  }
 
   @action
   authenticate = () => {

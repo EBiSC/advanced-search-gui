@@ -5,6 +5,10 @@ import Styles from "../UI/UiStyles"
 import ResultBlock from "./ResultBlock"
 import Button from 'material-ui/Button'
 import ShareIcon from "material-ui/svg-icons/communication/screen-share"
+import { CopyToClipboard } from 'react-copy-to-clipboard'
+import Tooltip from 'material-ui/Tooltip'
+
+let tooltip = "Copy Share Link"
 
 @observer
 class Results extends Component {
@@ -15,15 +19,19 @@ class Results extends Component {
         <header style={Styles.ResultsHeader}>
           <h2 style={{ margin: "16px 0" }}>
             {Store.searchText}
-            <span style={{ textAlign: "right" }}>
-              <Button onClick={() => { Store.share() }} style={{ backgroundColor: "white" }} variant="fab" color="primary" aria-label="share" >
-                <ShareIcon />
-              </Button>
+            <span style={{ position: "absolute", right: "16px", top: "16px" }}>
+              <Tooltip id="tooltip-icon" title={tooltip}>
+                <CopyToClipboard text={Store.share()} onCopy={() => Store.copied()}>
+                  <Button onClick={() => { }} style={{ backgroundColor: "white" }} variant="fab" color="primary" aria-label="share" >
+                    <ShareIcon />
+                  </Button>
+                </CopyToClipboard>
+              </Tooltip>
             </span>
           </h2>
         </header>
         <ResultBlock />
-      </div>
+      </div >
     )
   }
 }

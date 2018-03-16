@@ -22,6 +22,12 @@ export default class Query {
     setConsequence() {
         if (Store.selectedConsequence !== "")
             this.query.variants.consequences = { Consequence: Store.selectedConsequence.replace(/ /g, "_") }
+        else {
+            Store.dialog.title = "No Variation Consequence?"
+            Store.dialog.content = `Please select a variation consequence`
+            Store.loading = false
+            return
+        }
     }
 
     setZygosity() {

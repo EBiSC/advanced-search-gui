@@ -23,7 +23,7 @@ const styles = {
     borderTopLeftRadius: "8px",
     borderTopRightRadius: "8px",
     background: "#D0D8DD",
-    padding: "16px 32px"
+    padding: "16px 32px", position: "relative"
   },
   AlignRight: {
     textAlign: "right"
