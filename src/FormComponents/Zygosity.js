@@ -1,9 +1,9 @@
 import React, { Component } from "react"
 import Store from "../Store"
 import { observer } from "mobx-react"
-import { MenuItem } from 'material-ui/Menu'
-import { FormControl, FormHelperText } from 'material-ui/Form'
-import Select from 'material-ui/Select'
+import { MenuItem } from 'material-ui-next/Menu'
+import { FormControl, FormHelperText } from 'material-ui-next/Form'
+import Select from 'material-ui-next/Select'
 
 const zygosityOptions = ["All", "Heterozygous", "Homozygous"]
 
@@ -13,7 +13,6 @@ class Zygosity extends Component {
     handleChange = (e) => {
         Store.zygosity = e.target.value
     }
-
 
     render() {
         return (

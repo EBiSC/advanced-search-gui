@@ -2,8 +2,8 @@ import React, { Component } from "react"
 import { observer } from "mobx-react"
 import Store from "../Store"
 import { MenuItem } from 'material-ui/Menu'
-import { FormControl, FormHelperText } from 'material-ui/Form'
-import Select from 'material-ui/Select'
+import { FormControl, FormHelperText } from 'material-ui-next/Form'
+import Select from 'material-ui-next/Select'
 
 @observer
 class VariationConsequence extends Component {

@@ -3,7 +3,7 @@ import Styles from "../UI/UiStyles"
 import Store from "../Store"
 import { observer } from "mobx-react"
 import Slider from "material-ui/Slider"
-import Checkbox from 'material-ui/Checkbox'
+import Checkbox from 'material-ui-next/Checkbox'
 
 @observer
 class AlleleFrequency extends Component {

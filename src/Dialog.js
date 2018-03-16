@@ -4,9 +4,9 @@ import Dialog, {
     DialogContent,
     DialogContentText,
     DialogTitle,
-} from 'material-ui/Dialog'
+} from 'material-ui-next/Dialog'
 import Store from "./Store"
-import Slide from 'material-ui/transitions/Slide'
+import Slide from 'material-ui-next/transitions/Slide'
 
 function Transition(props) {
     return <Slide direction="up" {...props} />;

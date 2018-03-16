@@ -2,7 +2,7 @@ import React, { Component } from "react"
 import { observer } from "mobx-react"
 import Store from "../Store"
 import TextField from 'material-ui/TextField'
-import Button from 'material-ui/Button'
+import Button from 'material-ui-next/Button'
 import CircularProgress from 'material-ui/CircularProgress';
 const USERNAME = "username"
 const PASSWORD = "password"

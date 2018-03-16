@@ -6,8 +6,6 @@ import Loading from "./Loading"
 import SendButton from "./SendButton"
 import SearchBoxLabel from "./SearchBoxLabel"
 import AutoComplete from "material-ui/AutoComplete"
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-import getMuiTheme from 'material-ui/styles/getMuiTheme'
 
 @observer
 class SearchBox extends Component {

@@ -20,18 +20,21 @@ export default class Query {
     }
 
     setConsequence() {
-        if (Store.selectedConsequence !== "")
+        if (Store.selectedConsequence !== "") {
             this.query.variants.consequences = { Consequence: Store.selectedConsequence.replace(/ /g, "_") }
+            return true
+        }
         else {
+            console.log(Store.selectedConsequence)
             Store.dialog.title = "No Variation Consequence?"
             Store.dialog.content = `Please select a variation consequence`
             Store.loading = false
-            return
+            return false
         }
     }
 
     setZygosity() {
-        if (Store.zygosity !== "Both")
+        if (Store.zygosity !== "All")
             this.query.genotypes = { heterozygosity: Store.zygosity === "Heterozygous" ? true : false }
     }
 
@@ -65,11 +68,20 @@ export default class Query {
     }
 
     formatResults(results) {
-        console.log(results)
-        if (Store.inputCategory === GENE)
-            results = results[0].variants
+        // console.log(results)
+        if (Store.inputCategory === GENE) {
+            if (results[0].variants) {
+                results = results[0].variants
+                Store.results = results
+            }
+            else {
+                Store.dialog.title = "No Results"
+                Store.dialog.content = "No Results were found. Try searching for something else or expand your filters"
+            }
+        }
+
         // localStorage["results"] = JSON.stringify(results)
-        Store.results = results
+
     }
 }
 

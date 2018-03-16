@@ -8,8 +8,8 @@ class Gene {
         Store.loading = true
         let query = new Query()
         query.setMaxAlleleFreq()
-        query.setConsequence()
-        query.send()
+        if (query.setConsequence())
+            query.send()
     }
 }
 

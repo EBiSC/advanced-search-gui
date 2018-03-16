@@ -1,12 +1,12 @@
 import React, { Component } from "react"
-import Button from 'material-ui/Button'
+import RaisedButton from 'material-ui/RaisedButton'
 import ExpansionPanel, {
     ExpansionPanelSummary,
     ExpansionPanelDetails,
-} from 'material-ui/ExpansionPanel'
-import Typography from 'material-ui/Typography';
+} from 'material-ui-next/ExpansionPanel'
+import Typography from 'material-ui-next/Typography';
 import ExpandMoreIcon from "material-ui/svg-icons/navigation/expand-more"
-import Table, { TableBody, TableFooter, TablePagination, TableCell, TableHead, TableRow } from 'material-ui/Table'
+import Table, { TableBody, TableFooter, TablePagination, TableCell, TableHead, TableRow } from 'material-ui-next/Table'
 
 class ResultPanel extends Component {
 
@@ -43,10 +43,10 @@ class ResultPanel extends Component {
                                     <TableCell >{genotype.cell_line.primary_disease.name}</TableCell>
                                     <TableCell >{genotype.genotype}</TableCell>
                                     <TableCell >
-                                        <Button onClick={() => {
+                                        <RaisedButton label="View" onClick={() => {
                                             let win = window.open(`https://cells.ebisc.org/${genotype.cell_line.name}/`, '_blank')
                                             win.focus()
-                                        }} >View</Button></TableCell>
+                                        }} /></TableCell>
                                 </TableRow>)
                             })}
                         </TableBody>

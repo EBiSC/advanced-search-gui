@@ -3,10 +3,10 @@ import { observer } from "mobx-react"
 import Store from "../Store"
 import Styles from "../UI/UiStyles"
 import ResultBlock from "./ResultBlock"
-import Button from 'material-ui/Button'
+import Button from 'material-ui-next/Button'
 import ShareIcon from "material-ui/svg-icons/communication/screen-share"
 import { CopyToClipboard } from 'react-copy-to-clipboard'
-import Tooltip from 'material-ui/Tooltip'
+import Tooltip from 'material-ui-next/Tooltip'
 
 let tooltip = "Copy Share Link"
 

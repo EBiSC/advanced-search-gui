@@ -34,7 +34,7 @@ export class Store {
   @observable selectedConsequence = this.consequenceAutocompleteArray[0]
 
   // Form - Zygosity
-  @observable zygosity = "Both"
+  @observable zygosity = "All"
   @observable zygosityToggle = true
 
   // Form - Allele Frequency (MAF)
