@@ -2,7 +2,7 @@ import { observable, action } from "mobx"
 import Store from "./Store"
 import Query from "./Query"
 
-const URL = "http://rest.ensembl.org/variation/human/"
+const URL = "https://rest.ensembl.org/variation/human/"
 
 class Variant {
 

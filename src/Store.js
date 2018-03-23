@@ -12,6 +12,7 @@ export class Store {
   @observable loading = false
   @observable results = false
   @observable deferredQuery = false
+  @observable savedQuery = ""
 
   //Variant
   @observable variantStart = ""
@@ -112,7 +113,7 @@ export class Store {
     try {
       return fetch(url).then(x => x.json())
     } catch (e) {
-      console.log("Error", e)
+      // Handle Error as you like
     }
   }
 
@@ -128,19 +129,8 @@ export class Store {
   }
 
   @action
-  share() {
-    let url = {
-      inputType: this.inputType, allele_freq: this.allelefreq, allelefreqToggle: this.allelefreqToggle, searchText: this.searchText,
-      zygosity: this.zygosity, consequence: this.selectedConsequence
-    }
-    url = JSON.stringify(url)
-    return window.location.href.split("?")[0] + "?share=" + url
-  }
-
-  @action
   copied() {
     this.dialog.title = "URL Copied!"
-    this.dialog.content = `This means sharing with your friends just got easier!`
   }
 
   @action
@@ -153,25 +143,22 @@ export class Store {
       },
       method: "POST"
     }).then(x => x.json()).then(x => {
-      //console.log(x)
       this.loading = false
       if (x.access_token) {
-        console.log("Authenticated!!!")
         this.accessToken = x.access_token
         localStorage["aqs_token"] = x.access_token
         localStorage["aqs_time"] = new Date()
-
         if (this.deferredQuery) {
           this.sendRequest()
           this.deferredQuery = false
         }
-
         // ("SGCG:c.1-6638T>C")
         // Logout after 3500 seconds!
         setTimeout(() => { this.accessToken = "" }, 3500 * 1000)
       }
       else if (x.error) {
-        this.authError = x.error_description
+        this.dialog.title = "Error"
+        this.dialog.content = x.error_description
       }
     })
   }
@@ -215,7 +202,6 @@ export class Store {
         }
       ]
   }
-
 
   @computed
   get authenticated() {

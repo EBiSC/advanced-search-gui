@@ -3,6 +3,7 @@ import { VARIANT, GENE } from "./Constants"
 const VariantURL = "https://wp-p2m-e0:8080/api/variants/fetch"
 const GeneURL = "https://wp-p2m-e0:8080/api/genes/fetch"
 
+// All the Queries to the HTSGET API start here
 export default class Query {
 
     constructor() {
@@ -39,6 +40,15 @@ export default class Query {
     }
 
     async send() {
+        let saveURL = {
+            inputType: Store.inputType, allele_freq: Store.allelefreq, allelefreqToggle: Store.allelefreqToggle, category: Store.inputCategory, searchText: Store.searchText,
+            zygosity: Store.zygosity, consequence: Store.selectedConsequence
+        }
+        saveURL = JSON.stringify(saveURL)
+        saveURL = window.location.href.split("?")[0] + "?share=" + saveURL
+        console.log("Saved URL ", saveURL)
+        Store.savedQuery = saveURL
+
         console.log(this.query)
         console.log(JSON.stringify(this.fields))
         let url
@@ -73,15 +83,15 @@ export default class Query {
             if (results[0].variants) {
                 results = results[0].variants
                 Store.results = results
+                //TEMP
+                localStorage["results"] = JSON.stringify(results)
             }
             else {
                 Store.dialog.title = "No Results"
                 Store.dialog.content = "No Results were found. Try searching for something else or expand your filters"
             }
         }
-
-        // localStorage["results"] = JSON.stringify(results)
-
+        else Store.results = results
     }
 }
 

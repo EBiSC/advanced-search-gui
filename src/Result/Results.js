@@ -7,8 +7,7 @@ import Button from 'material-ui-next/Button'
 import ShareIcon from "material-ui/svg-icons/communication/screen-share"
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import Tooltip from 'material-ui-next/Tooltip'
-
-let tooltip = "Copy Share Link"
+let tooltip = "Share URL"
 
 @observer
 class Results extends Component {
@@ -20,8 +19,9 @@ class Results extends Component {
           <h2 style={{ margin: "16px 0" }}>
             {Store.searchText}
             <span style={{ position: "absolute", right: "16px", top: "16px" }}>
+              {/* Copy Share URL */}
               <Tooltip id="tooltip-icon" title={tooltip}>
-                <CopyToClipboard text={Store.share()} onCopy={() => Store.copied()}>
+                <CopyToClipboard text={Store.savedQuery} onCopy={() => Store.copied()}>
                   <Button onClick={() => { }} style={{ backgroundColor: "white" }} variant="fab" color="primary" aria-label="share" >
                     <ShareIcon />
                   </Button>

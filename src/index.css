@@ -1,4 +1,3 @@
-@import url("https://fonts.googleapis.com/css?family=Roboto:300,400");
 
 body {
   margin: 0;
@@ -26,26 +25,6 @@ body {
   padding: 32px;
   color: white;
 }
-.ball {
-  height: 60px;
-  width: 60px;
-  background-color: slategrey;
-  border-radius: 50%;
-  padding: 32px;
-}
-#slides {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  border: 3px solid #333;
-}
-.accordion__body {
- padding: 0 !important; 
-}
-.accordion__title
-{
-  width:auto !important;
-}
 .box {
   margin: 32px;
   min-height: 400px;
@@ -66,38 +45,4 @@ h2 {
   margin: 0;
   margin-bottom: 12px;
   font-weight: 300;
-}
-.tutorial ul {
-  list-style-type: none;
-  padding: 0 0 0 16px;
-}
-.tutorial ul li {
-  padding: 8px 0;
-  font-size: 22px;
-  text-decoration: underline;
-}
-.tutorial ul li small {
-  text-decoration: none;
-  padding: 16px;
-  font-size: 16px;
-  display: block;
-}
-.tutorial ul li small:first-child {
-  padding-top: 32px;
-}
-.blue,
-.green,
-.red {
-  width: 64px;
-  height: 64px;
-  border-radius: 50%;
-}
-.blue {
-  background: blue;
-}
-.green {
-  background: green;
-}
-.red {
-  background: tomato;
 }

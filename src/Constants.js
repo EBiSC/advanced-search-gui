@@ -1,2 +1,2 @@
 export const VARIANT = "Variant"
-export const GENE = "Gene"
+export const GENE = "Gene"  

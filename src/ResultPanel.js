@@ -6,17 +6,41 @@ import ExpansionPanel, {
 } from 'material-ui-next/ExpansionPanel'
 import Typography from 'material-ui-next/Typography';
 import ExpandMoreIcon from "material-ui/svg-icons/navigation/expand-more"
-import Table, { TableBody, TableFooter, TablePagination, TableCell, TableHead, TableRow } from 'material-ui-next/Table'
+import Table, { TableBody, TableFooter, TableSortLabel, TablePagination, TableCell, TableHead, TableRow } from 'material-ui-next/Table'
 
 class ResultPanel extends Component {
 
     constructor() {
         super()
-        this.state = { page: 0, rowsPerPage: 10 }
+        this.state = { newData: [], page: 0, rowsPerPage: 10, order: "asc", orderBy: "name" }
+    }
+
+    handleRequestSort = (event, property) => {
+        const orderBy = property
+        let order = 'desc'
+        if (this.state.orderBy === property && this.state.order === 'desc') { order = 'asc' }
+        this.setState({ order, orderBy })
+        let genotypes = this.props.data
+        //Sorting by Name
+        if (orderBy === "name") {
+            if (order === "desc")
+                genotypes.genotypes = genotypes.genotypes.sort((a, b) => (b.cell_line.name < a.cell_line.name ? -1 : 1))
+            else
+                genotypes.genotypes = genotypes.genotypes.sort((a, b) => (a.cell_line.name < b.cell_line.name ? -1 : 1))
+        }
+        //Sorting by Zygosity
+        if (orderBy === "zygosity") {
+            if (order === "desc")
+                genotypes.genotypes = genotypes.genotypes.sort((a, b) => (b.genotype < a.genotype ? -1 : 1))
+            else
+                genotypes.genotypes = genotypes.genotypes.sort((a, b) => (a.genotype < b.genotype ? -1 : 1))
+        }
     }
 
     render() {
         let result = this.props.data
+        if (this.state.newData.length > 0)
+            result = this.state.newData
         return (
             <ExpansionPanel defaultExpanded={true} >
                 <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} >
@@ -28,17 +52,32 @@ class ResultPanel extends Component {
                     <Table >
                         <TableHead>
                             <TableRow>
-                                <TableCell style={{ width: "90px" }}>Cell Line</TableCell>
-                                <TableCell >Cell Type</TableCell>
+                                <TableCell style={{ width: "90px" }}>
+                                    <TableSortLabel
+                                        active={this.state.orderBy === "name"}
+                                        direction={this.state.order} onClick={(event) => this.handleRequestSort(event, "name")}>
+                                        Cell Line
+                                        </TableSortLabel>
+                                </TableCell>
+                                <TableCell > Cell Type </TableCell>
                                 <TableCell >Disease</TableCell>
-                                <TableCell >Zygosity</TableCell>
+                                <TableCell >
+                                    <TableSortLabel
+                                        active={this.state.orderBy === "zygosity"}
+                                        direction={this.state.order} onClick={(event) => this.handleRequestSort(event, "zygosity")}>
+                                        Zygosity
+                                    </TableSortLabel>
+                                </TableCell>
                                 <TableCell >View on EBISC</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
+                            {/*Populating Tables with pagination*/}
                             {result.genotypes && result.genotypes.slice(this.state.page * this.state.rowsPerPage, this.state.page * this.state.rowsPerPage + this.state.rowsPerPage).map(genotype => {
                                 return (<TableRow key={genotype.id}>
-                                    <TableCell>{genotype.cell_line.name}</TableCell>
+                                    <TableCell style={{ width: "110px" }}>
+                                        {genotype.cell_line.name}
+                                    </TableCell>
                                     <TableCell >{genotype.cell_line.primary_cell_type.name}</TableCell>
                                     <TableCell >{genotype.cell_line.primary_disease.name}</TableCell>
                                     <TableCell >{genotype.genotype}</TableCell>
@@ -57,12 +96,8 @@ class ResultPanel extends Component {
                                     count={result.genotypes.length}
                                     rowsPerPage={this.state.rowsPerPage}
                                     page={this.state.page}
-                                    backIconButtonProps={{
-                                        'aria-label': 'Previous Page',
-                                    }}
-                                    nextIconButtonProps={{
-                                        'aria-label': 'Next Page',
-                                    }}
+                                    backIconButtonProps={{ 'aria-label': 'Previous Page', }}
+                                    nextIconButtonProps={{ 'aria-label': 'Next Page', }}
                                     onChangePage={(event, page) => {
                                         this.setState({ page: page })
                                     }}
@@ -74,7 +109,7 @@ class ResultPanel extends Component {
                         </TableFooter>
                     </Table>
                 </ExpansionPanelDetails>
-            </ExpansionPanel>
+            </ExpansionPanel >
         )
     }
 }

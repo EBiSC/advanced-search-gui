@@ -22,12 +22,14 @@ class AlleleFrequency extends Component {
                         checked={Store.allelefreqToggle} color="primary"
                         onChange={this.handleChange}
                     />
-                    {Store.allelefreqToggle && <Slider style={{ width: "80%" }} min={0} max={1} step={0.05}
+                    <Slider style={{ width: "80%" }} min={0} max={1} step={0.05}
+                        disabled={!Store.allelefreqToggle}
                         defaultValue={Store.allelefreq}
                         sliderStyle={Styles.Slider}
                         onChange={(e, value) => {
                             Store.allelefreq = value
-                        }} />}
+                        }} />
+
                 </div>
             </div>
         );
