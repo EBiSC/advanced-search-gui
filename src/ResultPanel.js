@@ -12,7 +12,7 @@ class ResultPanel extends Component {
 
     constructor() {
         super()
-        this.state = { newData: [], page: 0, rowsPerPage: 10, order: "asc", orderBy: "name" }
+        this.state = { page: 0, rowsPerPage: 10, order: "asc", orderBy: "name" }
     }
 
     handleRequestSort = (event, property) => {
@@ -39,8 +39,7 @@ class ResultPanel extends Component {
 
     render() {
         let result = this.props.data
-        if (this.state.newData.length > 0)
-            result = this.state.newData
+
         return (
             <ExpansionPanel defaultExpanded={true} >
                 <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} >
@@ -59,7 +58,7 @@ class ResultPanel extends Component {
                                         Cell Line
                                         </TableSortLabel>
                                 </TableCell>
-                                <TableCell > Cell Type </TableCell>
+                                <TableCell >Cell Type</TableCell>
                                 <TableCell >Disease</TableCell>
                                 <TableCell >
                                     <TableSortLabel

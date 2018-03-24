@@ -5,10 +5,8 @@ import { GENE } from "../Constants"
 import ResultPanel from "../ResultPanel"
 import Styles from "../UI/UiStyles"
 
-
 @observer
 class ResultBlock extends Component {
-
   render() {
     return (
       <div style={Styles.ResultBlock}>

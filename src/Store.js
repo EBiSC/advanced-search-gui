@@ -63,12 +63,6 @@ export class Store {
       }
     }
 
-    //Check for GO Terms
-    if (this.searchText.toUpperCase().indexOf("GO:") === 0) {
-      this.fetchGoSuggest()
-      this.inputType = "GO"
-      return
-    }
     //Check for rsID
     if (this.searchText.trim().match(/^rs\d+$/)) {
       this.inputType = "dbSNP"
@@ -87,16 +81,6 @@ export class Store {
     if (this.inputType === "dbSNP" || this.inputType === "HGVS") return VARIANT
     if (this.inputType === "GO" || this.inputType === "Gene Symbol") return GENE
     return "Dunno category :("
-  }
-
-  fetchGoSuggest = () => {
-    this.fetchStuff(
-      "https://www.ebi.ac.uk/ols/api/select?ontology=go&q=" + this.searchText
-    ).then(x => {
-      this.autocompleteArray = x.response.docs.map(
-        x => x.obo_id + " " + x.label
-      )
-    })
   }
 
   @action
@@ -123,7 +107,7 @@ export class Store {
       Variant.name = this.searchText.trim()
       Variant.getCellLineFromVariant()
     }
-    if (this.inputType === "Gene Symbol") {
+    if (this.inputType === "Gene Symbol" || this.inputType === "GO") {
       Gene.getCellLine()
     }
   }
@@ -161,6 +145,40 @@ export class Store {
         this.dialog.content = x.error_description
       }
     })
+  }
+
+  @action
+  CSVDownload() {
+    if (this.results) {
+      const Json2csvParser = require('json2csv').Parser
+      const fields = ['location', 'cellname', 'celltype', 'disease', 'zygosity', 'externalurl']
+      let rows = []
+      this.results.map(variant => {
+        variant.genotypes.map(x => {
+          let row = {
+            location: variant.seq_region_name + ":" + variant.start,
+            cellname: x.cell_line.name,
+            celltype: x.cell_line.primary_cell_type.name,
+            disease: x.cell_line.primary_disease.name,
+            zygosity: x.genotype,
+            externalurl: `https://cells.ebisc.org/${x.cell_line.name}/`
+          }
+          rows.push(row)
+          return false
+        })
+        return false
+      })
+      const json2csvParser = new Json2csvParser({ fields })
+      const csv = json2csvParser.parse(rows)
+      var downloadLink = document.createElement("a")
+      var blob = new Blob(["\ufeff", csv])
+      var url = URL.createObjectURL(blob)
+      downloadLink.href = url
+      downloadLink.download = "export.csv"
+      document.body.appendChild(downloadLink)
+      downloadLink.click()
+      document.body.removeChild(downloadLink)
+    }
   }
 
   @computed
