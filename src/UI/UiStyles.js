@@ -110,15 +110,6 @@ const styles = {
     width: "100%",
     fontFamily: "'Roboto', sans-serif"
   },
-  input2: {
-    padding: "8px 12px",
-    borderWidth: 0,
-    border: "2px solid #333",
-    backgroundColor: "#fff",
-    fontSize: "22px",
-    color: "#ededed",
-    width: "98%"
-  },
   header: {
     textAlign: "center",
     padding: "32px"
@@ -152,15 +143,6 @@ const styles = {
     color: "#e2e2e2",
     borderRadius: "5px",
     display: "inline-block"
-  },
-  chip: {
-    background: "#7A7A7A",
-    padding: "8px",
-    margin: "8px 0",
-    color: "#e2e2e2",
-    borderRadius: "5px",
-    display: "inline-block",
-    float: "right"
   },
   tag: {
     backgroundColor: "#B0BEC5",

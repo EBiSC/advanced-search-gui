@@ -5,11 +5,11 @@ import AlleleFrequency from "../FormComponents/AlleleFrequency"
 import Zygosity from "../FormComponents/Zygosity"
 import { Row, Col } from "react-grid-system"
 
+// Form diplayed when a variant is searched
 @observer
 class VariantForm extends Component {
   render() {
     return (
-
       <Row nogutter style={Styles.RowMargin}>
         <Col sm={6}>
           <div

@@ -9,17 +9,17 @@ import Title from "./UI/Title"
 import Main from "./Main"
 import LoginForm from "./Forms/LoginForm"
 import Dialog from "./Dialog"
-import Documentation from "./Documentation"
 
 @observer
 class App extends Component {
 
   componentDidMount() {
-    // Checking for URL Paramters incase this is a shared URL
+    // Check if the URL was shared
     var url_string = window.location.href
     var url = new URL(url_string)
     var share = url.searchParams.get("share")
     if (share) {
+      // Save shared Settings
       share = JSON.parse(share)
       Store.inputType = share.inputType
       Store.searchText = share.searchText
@@ -29,26 +29,22 @@ class App extends Component {
       Store.allelefreqToggle = share.allelefreqToggle
       setTimeout(() => { window.history.pushState({}, document.title, "/") }, 800)
     }
-
+    // Check if already logged in and logout user after 3000 seconds
     if (localStorage["aqs_token"] && localStorage["aqs_time"]) {
       let now = new Date()
       let tokenTime = Date.parse(localStorage["aqs_time"])
       let diff = (now - tokenTime) / 1000
       if (diff < 3000) {
         Store.accessToken = localStorage["aqs_token"]
-        //Do Shared Query
+        //Do the URL Shared Query
         Store.sendRequest()
         setTimeout(() => { Store.accessToken = "" }, (3200 - diff) * 1000)
       }
       else if (share) {
+        //Do the URL Shared Query after Login 
         Store.deferredQuery = true
       }
     }
-
-    let sample = localStorage.getItem('results');
-    sample = JSON.parse(sample)
-    Store.results = sample
-
   }
 
   render() {
@@ -70,16 +66,10 @@ class App extends Component {
                 {/* The heart of the app is here*/}
                 <Main />
               </div>}
-            {/* Always on documentation here */}
-            < Documentation />
           </div>
-
-
-
-
         </div>
       </MuiThemeProvider >
-    );
+    )
   }
 }
 export default App

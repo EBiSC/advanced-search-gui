@@ -5,6 +5,7 @@ import { GENE } from "../Constants"
 import ResultPanel from "../ResultPanel"
 import Styles from "../UI/UiStyles"
 
+// Results Container with the share and download buttons
 @observer
 class ResultBlock extends Component {
   render() {

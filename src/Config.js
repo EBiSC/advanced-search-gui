@@ -1,3 +1,6 @@
 const APIURL = "https://wp-p2m-e0:8080/api/"
+export const EnsemblVariationURL = "https://rest.ensembl.org/variation/human/"
+export const GeneOntologyURL = "https://www.ebi.ac.uk/ols/api/select?ontology=ogg&q="
+export const EGAAuthenticationURL = "https://ega.ebi.ac.uk:8443/ega-openid-connect-server/token"
 export const VariantURL = APIURL + "variants/fetch"
 export const GeneURL = APIURL + "genes/fetch"

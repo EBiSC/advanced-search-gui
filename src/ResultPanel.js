@@ -8,8 +8,9 @@ import Typography from 'material-ui-next/Typography';
 import ExpandMoreIcon from "material-ui/svg-icons/navigation/expand-more"
 import Table, { TableBody, TableFooter, TableSortLabel, TablePagination, TableCell, TableHead, TableRow } from 'material-ui-next/Table'
 
+// Populates the result table per variant
+// Adds pagination and sorting on the result tables
 class ResultPanel extends Component {
-
     constructor() {
         super()
         this.state = { page: 0, rowsPerPage: 10, order: "asc", orderBy: "name" }

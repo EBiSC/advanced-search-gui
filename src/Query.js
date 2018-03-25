@@ -22,10 +22,7 @@ export default class Query {
     //Setting Consequence
     setConsequence() {
         if (Store.selectedConsequence !== "") {
-            if (Store.selectedConsequence !== "loss of function")
-                this.query.variants.consequences = { Consequence: Store.selectedConsequence.replace(/ /g, "_") }
-            else
-                this.query.variants.consequences = { Consequence: ["5_prime_UTR_variant", "splice_acceptor_variant", "splice_donor_variant"] }
+            this.query.variants.consequences = { Consequence: Store.selectedConsequence.replace(/ /g, "_") }
             return true
         }
         else {
@@ -43,18 +40,15 @@ export default class Query {
     }
 
     async send() {
-        // Saving URL to share later
-        let saveURL = {
+        // Saving URL to share later 
+        let saveURL = JSON.stringify({
             inputType: Store.inputType, allele_freq: Store.allelefreq, allelefreqToggle: Store.allelefreqToggle, category: Store.inputCategory, searchText: Store.searchText,
             zygosity: Store.zygosity, consequence: Store.selectedConsequence
-        }
-        saveURL = JSON.stringify(saveURL)
+        })
         saveURL = window.location.href.split("?")[0] + "?share=" + saveURL
         Store.savedQuery = saveURL
 
         // Sending off the query request
-        console.log(this.query)
-        //console.log(JSON.stringify(this.fields))
         let url
         if (Store.inputCategory === VARIANT)
             url = `${VariantURL}?fields=${JSON.stringify(this.fields)}&query=${JSON.stringify(this.query)}`
@@ -65,7 +59,6 @@ export default class Query {
             let result = await Store.fetchStuff(url)
             result = result.results
             Store.loading = false
-            console.log(result)
             if (result.length !== 0) {
                 this.formatResults(result)
             }
@@ -80,7 +73,7 @@ export default class Query {
             Store.loading = false
         }
     }
-
+    // return the child object based on gene or variant query
     formatResults(results) {
         if (Store.inputCategory === GENE) {
             if (results[0].variants) {

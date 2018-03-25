@@ -7,6 +7,7 @@ import CircularProgress from 'material-ui/CircularProgress';
 const USERNAME = "username"
 const PASSWORD = "password"
 
+// Login Form displayed when the user hasn't logged in or it has been 3600 mins since the last login
 @observer
 class LoginForm extends Component {
 

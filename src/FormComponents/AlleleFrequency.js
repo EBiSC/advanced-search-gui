@@ -18,18 +18,16 @@ class AlleleFrequency extends Component {
                 <h2>Allele Frequency {Store.allelefreqToggle ? Store.allelefreq.toFixed(2) : ""}</h2>
                 <div style={{ display: "flex" }}>
                     <Checkbox
-                        style={{ width: "20px", height: "20px", padding: "16px" }}
+                        style={{ color: "#546e7af2", width: "20px", height: "20px", padding: "16px" }}
                         checked={Store.allelefreqToggle} color="primary"
                         onChange={this.handleChange}
                     />
                     <Slider style={{ width: "80%" }} min={0} max={1} step={0.05}
-                        disabled={!Store.allelefreqToggle}
-                        defaultValue={Store.allelefreq}
+                        defaultValue={Store.allelefreq} disabled={!Store.allelefreqToggle}
                         sliderStyle={Styles.Slider}
                         onChange={(e, value) => {
                             Store.allelefreq = value
                         }} />
-
                 </div>
             </div>
         );

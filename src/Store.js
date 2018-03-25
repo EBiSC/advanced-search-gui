@@ -3,12 +3,12 @@ import { VARIANT, GENE } from "./Constants"
 import Variant from "./Variant"
 import Gene from "./Gene"
 import consequences from "./consequences.json"
-const EGAAuthenticationURL = "https://ega.ebi.ac.uk:8443/ega-openid-connect-server/token"
+import { EGAAuthenticationURL, GeneOntologyURL } from "./Config"
 
 export class Store {
 
+  // Query
   @observable searchText = ""
-  @observable searchError = ""
   @observable loading = false
   @observable results = false
   @observable deferredQuery = false
@@ -28,7 +28,7 @@ export class Store {
   // Autocomplete - SearchBox
   @observable autocompleteArray = []
   // Placeholder Text - SearchBox
-  @observable placeholderText = "using RsID, HGVS, Gene Symbols or GO ID"
+  @observable placeholderText = "using RsID, HGVS or Gene Symbols"
 
   // Form - Variant Consequences
   @observable consequenceAutocompleteArray = consequences
@@ -45,18 +45,14 @@ export class Store {
   //Dialog
   @observable dialog = { title: "", content: "" }
 
-  // Chip 
-  @observable inputType = "Start typing for an appropriate form"
-
-  //SNACKBAR
-  @observable snackbar = false
-  @observable snackbarText = "This will take you to the HIPSCI/EBISC website in the final product."
+  // Catch user input type
+  @observable inputType = ""
 
   @action
   getInputType = async () => {
     // Check for Gene Symbol 
     if (this.searchText.length >= 2) {
-      let response = await this.fetchStuff("https://www.ebi.ac.uk/ols/api/select?ontology=ogg&q=" + this.searchText);
+      let response = await this.fetchStuff(GeneOntologyURL + this.searchText);
       if (response.response.numFound !== 0) {
         this.autocompleteArray = response.response.docs.map(x => x.label)
         this.inputType = "Gene Symbol"
@@ -70,7 +66,6 @@ export class Store {
     }
     // Check for HGVS 
     if (this.searchText.trim().match(/^([^ :]+):.*?([cgmrp]?)\.?([*\-0-9]+.[^ ]*)/)) {
-      //this.getHGVS();
       this.inputType = "HGVS"
       return
     }
@@ -89,7 +84,6 @@ export class Store {
       this.autocompleteArray = []
     this.selectedConsequence = ""
     this.results = false
-    this.searchError = ""
   }
 
   @action
@@ -136,7 +130,6 @@ export class Store {
           this.sendRequest()
           this.deferredQuery = false
         }
-        // ("SGCG:c.1-6638T>C")
         // Logout after 3500 seconds!
         setTimeout(() => { this.accessToken = "" }, 3500 * 1000)
       }
@@ -146,7 +139,7 @@ export class Store {
       }
     })
   }
-
+  // Download Results as .CSV
   @action
   CSVDownload() {
     if (this.results) {
@@ -181,6 +174,7 @@ export class Store {
     }
   }
 
+  // Prepares the query object for htsget service
   @computed
   get query() {
     if (this.inputCategory === VARIANT) {
@@ -202,6 +196,7 @@ export class Store {
     }
   }
 
+  // Prepares the field object for htsget service
   @computed
   get fields() {
     if (this.inputCategory === VARIANT)
@@ -221,6 +216,7 @@ export class Store {
       ]
   }
 
+  // Returns the authentication status
   @computed
   get authenticated() {
     if (this.accessToken === "")

@@ -29,9 +29,7 @@ class SearchBox extends Component {
     return (
       <div>
         <div style={Styles.SearchBox}>
-
           <AutoComplete
-            errorText={Store.searchError}
             onNewRequest={this.onPressEnter}
             filter={AutoComplete.caseInsensitiveFilter}
             dataSource={Store.autocompleteArray.slice()}

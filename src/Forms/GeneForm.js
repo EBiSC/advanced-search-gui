@@ -5,6 +5,7 @@ import { Row, Col } from "react-grid-system"
 import VariationConsequence from "../FormComponents/VariationConsequence"
 import AlleleFrequency from "../FormComponents/AlleleFrequency"
 
+// Form diplayed when a gene is searched
 @observer
 class GeneForm extends Component {
   render() {

@@ -1,7 +1,7 @@
 import { action } from "mobx"
 import Store from "./Store"
 import Query from "./Query"
-
+// Prepares and sends off Gene related Queries
 class Gene {
     @action
     async  getCellLine() {
