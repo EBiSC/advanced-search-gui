@@ -61,13 +61,7 @@ class ResultPanel extends Component {
                                 </TableCell>
                                 <TableCell >Cell Type</TableCell>
                                 <TableCell >Disease</TableCell>
-                                <TableCell >
-                                    <TableSortLabel
-                                        active={this.state.orderBy === "zygosity"}
-                                        direction={this.state.order} onClick={(event) => this.handleRequestSort(event, "zygosity")}>
-                                        Zygosity
-                                    </TableSortLabel>
-                                </TableCell>
+                                <TableCell >Zygosity</TableCell>
                                 <TableCell >View on EBISC</TableCell>
                             </TableRow>
                         </TableHead>
