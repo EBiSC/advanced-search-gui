@@ -27,7 +27,6 @@ class App extends Component {
       Store.zygosity = share.zygosity
       Store.allelefreq = share.allele_freq
       Store.allelefreqToggle = share.allelefreqToggle
-      setTimeout(() => { window.history.pushState({}, document.title, "/") }, 800)
     }
     // Check if already logged in and logout user after 3000 seconds
     if (localStorage["aqs_token"] && localStorage["aqs_time"]) {
